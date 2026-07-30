@@ -38,7 +38,7 @@
     let context=[];
 
     function addMessage(role,html){const node=messageTemplate.content.cloneNode(true),article=node.querySelector('.message');article.classList.add(role);node.querySelector('.message-label').textContent=role==='user'?'You':'TFPM';node.querySelector('.message-body').innerHTML=html;conversation.appendChild(node);article.scrollIntoView({behavior:'smooth',block:'nearest'});return article}
-    function normalize(v){return v.trim().toLowerCase().replace(/[?!.]+$/,'')}
+    function normalize(v){return v.trim().toLowerCase().replace(/[?!.]+$/,'').replace(/\bcm\b/g,'codling moth')}
     function escapeHtml(v){return v.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
     function setContext(parts){context=parts;renderBreadcrumb();updatePlaceholder()}
     function renderBreadcrumb(){breadcrumb.innerHTML='';const home=document.createElement('button');home.textContent='Home';home.onclick=reset;breadcrumb.appendChild(home);context.forEach((part,i)=>{breadcrumb.append(' › ');const b=document.createElement('button');b.textContent=part;b.onclick=()=>goToContext(i);breadcrumb.appendChild(b)})}
