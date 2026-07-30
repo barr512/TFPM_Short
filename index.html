@@ -64,7 +64,7 @@
         setContext(['Codling moth','Monitoring','Trap placement']);
         renderAnswer('Where should I place codling moth traps?',`<p>Hang the trap in the upper portion of the tree canopy, toward the outside of the canopy where air can move through it.</p><p>Keep the trap entrance clear. Leaves, shoots, or branches should not block moth entry or press against the sticky liner.</p><p>Use a similar height and canopy position for traps throughout the block. That consistency helps prevent placement differences from being mistaken for population differences.</p>`,['How many traps do I need?','Which traps and lures should I use?','How do I monitor under mating disruption?']);return true
       }
-      if(/how many.*trap|trap density|traps per|number of traps/.test(text)){
+      if((/\bhow many\b|\bnumber of\b|\btrap density\b/.test(text)&&/\btraps?\b/.test(text))||(/\btraps?\b/.test(text)&&/\bneed\b/.test(text)&&/\b(?:farm|orchard|block|acre|acres)\b/.test(text))){
         setContext(['Codling moth','Monitoring','Trap density']);
         renderAnswer('How many codling moth traps do I need?',`<p>Use no fewer than two traps in a block so one trap does not represent the entire orchard by itself.</p><p>A common starting density is about one trap per five acres. Add traps when a block is large, irregularly shaped, divided by terrain, or has known high-pressure areas that may not be represented by the basic density.</p><p>Record catches by individual trap rather than combining them immediately. Differences among trap locations can be useful.</p>`,['Where should I place the traps?','How often should I check the traps?']);return true
       }
