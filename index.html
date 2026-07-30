@@ -2,21 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
-
-  <meta
-    name="description"
-    content="TFPM Short — fast tree fruit pest management information."
-  />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TFPM Short — fast tree fruit pest management information." />
   <meta name="theme-color" content="#17324d" />
-
   <title>TFPM Short</title>
-
   <style>
     :root {
       --navy: #17324d;
@@ -34,36 +23,20 @@
       --shadow: 0 8px 24px rgba(21, 42, 61, 0.08);
       --radius-large: 20px;
       --radius-medium: 14px;
-      --radius-small: 10px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       min-height: 100vh;
       background: var(--background);
       color: var(--text);
-      font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    button,
-    input,
-    select {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
 
     .app-shell {
       width: min(100%, 760px);
@@ -78,11 +51,7 @@
       padding: 18px 2px 12px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-    }
+    .brand { display: flex; align-items: center; gap: 11px; }
 
     .brand-mark {
       display: grid;
@@ -97,18 +66,8 @@
       letter-spacing: 0.03em;
     }
 
-    .brand-name {
-      margin: 0;
-      color: var(--navy-dark);
-      font-size: 1.05rem;
-      font-weight: 750;
-    }
-
-    .brand-subtitle {
-      margin: 2px 0 0;
-      color: var(--muted);
-      font-size: 0.78rem;
-    }
+    .brand-name { margin: 0; color: var(--navy-dark); font-size: 1.05rem; font-weight: 750; }
+    .brand-subtitle { margin: 2px 0 0; color: var(--muted); font-size: 0.78rem; }
 
     .menu-button {
       display: grid;
@@ -140,7 +99,7 @@
       top: -70px;
       width: 185px;
       height: 185px;
-      border: 30px solid rgba(255, 255, 255, 0.06);
+      border: 30px solid rgba(255,255,255,0.06);
       border-radius: 50%;
     }
 
@@ -158,7 +117,6 @@
     .hero h1 {
       position: relative;
       z-index: 1;
-      max-width: 520px;
       margin: 0;
       font-size: clamp(1.75rem, 6vw, 2.55rem);
       line-height: 1.08;
@@ -182,10 +140,7 @@
       background: white;
     }
 
-    .search-row {
-      display: flex;
-      gap: 8px;
-    }
+    .search-row { display: flex; gap: 8px; }
 
     .search-input {
       min-width: 0;
@@ -198,9 +153,7 @@
       font-size: 1rem;
     }
 
-    .search-input::placeholder {
-      color: #8a949d;
-    }
+    .search-input::placeholder { color: #8a949d; }
 
     .ask-button {
       flex: 0 0 auto;
@@ -210,24 +163,6 @@
       background: var(--gold);
       color: #1f1b14;
       font-weight: 750;
-    }
-
-    .search-examples {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 13px;
-    }
-
-    .example-button {
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: 999px;
-      padding: 7px 10px;
-      background: rgba(255, 255, 255, 0.08);
-      color: white;
-      font-size: 0.76rem;
     }
 
     .context-strip {
@@ -253,88 +188,7 @@
       letter-spacing: 0.05em;
     }
 
-    .context-value {
-      color: var(--navy-dark);
-      font-size: 0.92rem;
-      font-weight: 700;
-    }
-
-    .section {
-      margin-top: 25px;
-    }
-
-    .section-heading {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 12px;
-    }
-
-    .section-heading h2 {
-      margin: 0;
-      color: var(--navy-dark);
-      font-size: 1.1rem;
-    }
-
-    .section-heading p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.78rem;
-    }
-
-    .tool-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 11px;
-    }
-
-    .tool-button {
-      min-height: 108px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-medium);
-      padding: 16px;
-      background: var(--surface);
-      color: var(--text);
-      text-align: left;
-      transition:
-        transform 150ms ease,
-        border-color 150ms ease,
-        box-shadow 150ms ease;
-    }
-
-    .tool-button:hover {
-      transform: translateY(-2px);
-      border-color: #aebdca;
-      box-shadow: var(--shadow);
-    }
-
-    .tool-icon {
-      display: grid;
-      width: 38px;
-      height: 38px;
-      place-items: center;
-      margin-bottom: 11px;
-      border-radius: 11px;
-      background: var(--blue-light);
-      color: var(--navy);
-      font-size: 1.05rem;
-      font-weight: 800;
-    }
-
-    .tool-title {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--navy-dark);
-      font-weight: 750;
-    }
-
-    .tool-description {
-      display: block;
-      color: var(--muted);
-      font-size: 0.78rem;
-      line-height: 1.4;
-    }
+    .context-value { color: var(--navy-dark); font-size: 0.92rem; font-weight: 700; }
 
     .result-panel {
       display: none;
@@ -345,9 +199,7 @@
       box-shadow: var(--shadow);
     }
 
-    .result-panel.visible {
-      display: block;
-    }
+    .result-panel.visible { display: block; }
 
     .result-header {
       display: flex;
@@ -371,11 +223,7 @@
       text-transform: uppercase;
     }
 
-    .result-title {
-      margin: 0;
-      color: var(--navy-dark);
-      font-size: 1.18rem;
-    }
+    .result-title { margin: 0; color: var(--navy-dark); font-size: 1.18rem; }
 
     .close-result {
       flex: 0 0 auto;
@@ -387,16 +235,8 @@
       color: var(--muted);
     }
 
-    .result-body {
-      padding: 18px 19px 20px;
-    }
-
-    .direct-answer {
-      margin: 0;
-      color: var(--text);
-      font-size: 1.03rem;
-      line-height: 1.58;
-    }
+    .result-body { padding: 18px 19px 20px; }
+    .direct-answer { margin: 0; font-size: 1.03rem; line-height: 1.58; }
 
     .qualifier {
       margin-top: 15px;
@@ -409,56 +249,38 @@
       line-height: 1.5;
     }
 
-    .result-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin-top: 17px;
-    }
+    .section { margin-top: 25px; }
+    .section-heading { margin-bottom: 12px; }
+    .section-heading h2 { margin: 0; color: var(--navy-dark); font-size: 1.1rem; }
+    .section-heading p { margin: 3px 0 0; color: var(--muted); font-size: 0.78rem; }
 
-    .secondary-button {
+    .tool-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 11px; }
+
+    .tool-button {
+      min-height: 108px;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 9px 12px;
-      background: white;
-      color: var(--navy);
-      font-size: 0.8rem;
-      font-weight: 700;
-    }
-
-    .recent-list {
-      display: grid;
-      gap: 9px;
-    }
-
-    .recent-button {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px;
+      border-radius: var(--radius-medium);
+      padding: 16px;
       background: var(--surface);
       color: var(--text);
       text-align: left;
     }
 
-    .recent-question {
-      font-weight: 650;
-    }
-
-    .recent-topic {
-      display: block;
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 0.75rem;
-    }
-
-    .recent-arrow {
+    .tool-icon {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      margin-bottom: 11px;
+      border-radius: 11px;
+      background: var(--blue-light);
       color: var(--navy);
-      font-size: 1.2rem;
+      font-size: 1.05rem;
+      font-weight: 800;
     }
+
+    .tool-title { display: block; margin-bottom: 4px; color: var(--navy-dark); font-weight: 750; }
+    .tool-description { display: block; color: var(--muted); font-size: 0.78rem; line-height: 1.4; }
 
     .footer {
       margin-top: 28px;
@@ -468,94 +290,40 @@
       text-align: center;
     }
 
-    .demo-message {
-      display: none;
-      margin-top: 12px;
-      padding: 12px;
-      border: 1px solid #b7d5c5;
-      border-radius: 10px;
-      background: #edf7f1;
-      color: var(--success);
-      font-size: 0.82rem;
-    }
-
-    .demo-message.visible {
-      display: block;
-    }
-
     @media (max-width: 560px) {
-      .app-shell {
-        padding-inline: 12px;
-      }
-
-      .hero {
-        padding: 23px 16px 19px;
-      }
-
-      .search-row {
-        display: grid;
-      }
-
-      .ask-button {
-        min-height: 44px;
-      }
-
-      .context-strip {
-        grid-template-columns: 1fr;
-      }
-
-      .tool-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .tool-button {
-        min-height: 125px;
-        padding: 14px;
-      }
+      .app-shell { padding-inline: 12px; }
+      .hero { padding: 23px 16px 19px; }
+      .search-row { display: grid; }
+      .ask-button { min-height: 44px; }
+      .context-strip { grid-template-columns: 1fr; }
+      .tool-grid { grid-template-columns: 1fr 1fr; }
+      .tool-button { min-height: 125px; padding: 14px; }
     }
 
     @media (max-width: 390px) {
-      .tool-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .tool-button {
-        min-height: auto;
-      }
+      .tool-grid { grid-template-columns: 1fr; }
+      .tool-button { min-height: auto; }
     }
   </style>
 </head>
-
 <body>
   <main class="app-shell">
     <header class="top-bar">
       <div class="brand">
         <div class="brand-mark" aria-hidden="true">TFPM</div>
-
         <div>
           <p class="brand-name">TFPM Short</p>
           <p class="brand-subtitle">Tree Fruit Pest Management</p>
         </div>
       </div>
-
-      <button
-        class="menu-button"
-        type="button"
-        aria-label="Open menu"
-        title="Menu"
-      >
-        ☰
-      </button>
+      <button class="menu-button" type="button" aria-label="Open menu" title="Menu">☰</button>
     </header>
 
     <section class="hero">
       <p class="hero-label">Professional field reference</p>
-
-      <h1>What do you need to know?</h1>
-
+      <h1>How can I help?</h1>
       <p class="hero-description">
-        Ask a specific tree fruit pest management question and receive a
-        concise answer from approved professional sources.
+        Please use the search below for any topic or question related to tree fruit.
       </p>
 
       <div class="search-panel">
@@ -565,459 +333,78 @@
             class="search-input"
             type="text"
             autocomplete="off"
-            placeholder="Ask about a pest, product, timing, or treatment..."
-            aria-label="Ask a pest management question"
+            placeholder="Enter your question or topic..."
+            aria-label="Enter a tree fruit question or topic"
           />
-
-          <button
-            id="askButton"
-            class="ask-button"
-            type="button"
-          >
-            Ask
-          </button>
+          <button id="askButton" class="ask-button" type="button">Ask</button>
         </div>
-      </div>
-
-      <div class="search-examples" aria-label="Example questions">
-        <button
-          class="example-button"
-          type="button"
-          data-question="How long does codling moth take from egg to adult?"
-        >
-          Egg to adult
-        </button>
-
-        <button
-          class="example-button"
-          type="button"
-          data-question="Can I use Delegate after Altacor?"
-        >
-          Delegate after Altacor
-        </button>
-
-        <button
-          class="example-button"
-          type="button"
-          data-question="What is codling moth biofix?"
-        >
-          Codling moth biofix
-        </button>
       </div>
     </section>
 
     <section class="context-strip" aria-label="Current app context">
-      <div class="context-item">
-        <span class="context-label">Crop</span>
-        <span class="context-value">Apple</span>
-      </div>
-
-      <div class="context-item">
-        <span class="context-label">Region</span>
-        <span class="context-value">Mid-Atlantic</span>
-      </div>
-
-      <div class="context-item">
-        <span class="context-label">Pilot pest</span>
-        <span class="context-value">Codling moth</span>
-      </div>
+      <div class="context-item"><span class="context-label">Crop</span><span class="context-value">Apple</span></div>
+      <div class="context-item"><span class="context-label">Region</span><span class="context-value">Mid-Atlantic</span></div>
+      <div class="context-item"><span class="context-label">Pilot pest</span><span class="context-value">Codling moth</span></div>
     </section>
 
-    <section
-      id="resultPanel"
-      class="result-panel"
-      aria-live="polite"
-    >
+    <section id="resultPanel" class="result-panel" aria-live="polite">
       <div class="result-header">
         <div>
-          <span id="resultCategory" class="result-category">
-            Pest biology
-          </span>
-
-          <h2 id="resultTitle" class="result-title">
-            Codling moth development
-          </h2>
+          <span id="resultCategory" class="result-category">Search test</span>
+          <h2 id="resultTitle" class="result-title">Question received</h2>
         </div>
-
-        <button
-          id="closeResult"
-          class="close-result"
-          type="button"
-          aria-label="Close answer"
-        >
-          ×
-        </button>
+        <button id="closeResult" class="close-result" type="button" aria-label="Close answer">×</button>
       </div>
-
       <div class="result-body">
         <p id="resultAnswer" class="direct-answer"></p>
-
         <div id="resultQualifier" class="qualifier"></div>
-
-        <div class="result-actions">
-          <button class="secondary-button demo-action" type="button">
-            View sources
-          </button>
-
-          <button class="secondary-button demo-action" type="button">
-            Related information
-          </button>
-
-          <button class="secondary-button demo-action" type="button">
-            Save answer
-          </button>
-        </div>
-
-        <div id="demoMessage" class="demo-message">
-          This button is included to visualize the interface. Its full
-          function will be added later.
-        </div>
       </div>
     </section>
 
     <section class="section">
       <div class="section-heading">
-        <div>
-          <h2>Quick tools</h2>
-          <p>Common field decisions</p>
-        </div>
+        <h2>Quick tools</h2>
+        <p>Common field decisions</p>
       </div>
-
       <div class="tool-grid">
-        <button
-          class="tool-button"
-          type="button"
-          data-tool="degree-days"
-        >
-          <span class="tool-icon" aria-hidden="true">DD</span>
-          <span class="tool-title">Degree-Day Calculator</span>
-          <span class="tool-description">
-            Calculate pest development from a biofix.
-          </span>
-        </button>
-
-        <button
-          class="tool-button"
-          type="button"
-          data-tool="rotation"
-        >
-          <span class="tool-icon" aria-hidden="true">↻</span>
-          <span class="tool-title">Product Rotation</span>
-          <span class="tool-description">
-            Compare previous and possible IRAC groups.
-          </span>
-        </button>
-
-        <button
-          class="tool-button"
-          type="button"
-          data-tool="product"
-        >
-          <span class="tool-icon" aria-hidden="true">Rx</span>
-          <span class="tool-title">Product Lookup</span>
-          <span class="tool-description">
-            Find active ingredient, group, PHI, and REI.
-          </span>
-        </button>
-
-        <button
-          class="tool-button"
-          type="button"
-          data-tool="pest"
-        >
-          <span class="tool-icon" aria-hidden="true">i</span>
-          <span class="tool-title">Pest Lookup</span>
-          <span class="tool-description">
-            Get a direct answer about biology or management.
-          </span>
-        </button>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <div>
-          <h2>Example questions</h2>
-          <p>Tap one to test the layout</p>
-        </div>
-      </div>
-
-      <div class="recent-list">
-        <button
-          class="recent-button"
-          type="button"
-          data-question="How long does codling moth take from egg to adult?"
-        >
-          <span>
-            <span class="recent-question">
-              How long from egg to adult?
-            </span>
-
-            <span class="recent-topic">
-              Codling moth biology
-            </span>
-          </span>
-
-          <span class="recent-arrow" aria-hidden="true">›</span>
-        </button>
-
-        <button
-          class="recent-button"
-          type="button"
-          data-question="Can I use Delegate after Altacor?"
-        >
-          <span>
-            <span class="recent-question">
-              Can I use Delegate after Altacor?
-            </span>
-
-            <span class="recent-topic">
-              Insecticide rotation
-            </span>
-          </span>
-
-          <span class="recent-arrow" aria-hidden="true">›</span>
-        </button>
-
-        <button
-          class="recent-button"
-          type="button"
-          data-question="What is codling moth biofix?"
-        >
-          <span>
-            <span class="recent-question">
-              What is codling moth biofix?
-            </span>
-
-            <span class="recent-topic">
-              Monitoring and degree-days
-            </span>
-          </span>
-
-          <span class="recent-arrow" aria-hidden="true">›</span>
-        </button>
+        <button class="tool-button" type="button"><span class="tool-icon">DD</span><span class="tool-title">Degree-Day Calculator</span><span class="tool-description">Calculate pest development from a biofix.</span></button>
+        <button class="tool-button" type="button"><span class="tool-icon">↻</span><span class="tool-title">Product Rotation</span><span class="tool-description">Compare previous and possible IRAC groups.</span></button>
+        <button class="tool-button" type="button"><span class="tool-icon">Rx</span><span class="tool-title">Product Lookup</span><span class="tool-description">Find active ingredient, group, PHI, and REI.</span></button>
+        <button class="tool-button" type="button"><span class="tool-icon">i</span><span class="tool-title">Pest Lookup</span><span class="tool-description">Get a direct answer about biology or management.</span></button>
       </div>
     </section>
 
     <footer class="footer">
-      Pilot version. Management information must be verified against current
-      pesticide labels and regionally appropriate professional guidance.
+      Pilot version. Management information must be verified against current pesticide labels and regionally appropriate professional guidance.
     </footer>
   </main>
 
   <script>
     const questionInput = document.getElementById("questionInput");
     const askButton = document.getElementById("askButton");
-
     const resultPanel = document.getElementById("resultPanel");
-    const resultCategory = document.getElementById("resultCategory");
-    const resultTitle = document.getElementById("resultTitle");
     const resultAnswer = document.getElementById("resultAnswer");
     const resultQualifier = document.getElementById("resultQualifier");
-
     const closeResult = document.getElementById("closeResult");
-    const demoMessage = document.getElementById("demoMessage");
 
-    const sampleAnswers = [
-      {
-        keywords: [
-          "egg to adult",
-          "egg into adult",
-          "egg become adult",
-          "development time",
-          "life cycle length",
-          "how long",
-          "become a moth"
-        ],
-        category: "Pest biology",
-        title: "Codling moth development",
-        answer:
-          "Codling moth commonly requires about four to seven weeks to develop from egg to adult, depending strongly on temperature.",
-        qualifier:
-          "Degree-day accumulation is more reliable than calendar days because development speeds up or slows down with temperature."
-      },
-      {
-        keywords: [
-          "delegate after altacor",
-          "altacor and delegate",
-          "rotate delegate",
-          "spray next",
-          "used altacor"
-        ],
-        category: "Product rotation",
-        title: "Delegate following Altacor",
-        answer:
-          "Delegate and Altacor belong to different IRAC groups. Delegate is Group 5, while Altacor is Group 28, so moving between them represents a change in mode of action.",
-        qualifier:
-          "A final decision must also consider the crop, target pest, number of previous applications, seasonal limits, preharvest interval, and current product label."
-      },
-      {
-        keywords: [
-          "biofix",
-          "first sustained capture",
-          "start degree days"
-        ],
-        category: "Monitoring",
-        title: "Codling moth biofix",
-        answer:
-          "Codling moth biofix is generally established from sustained male moth capture in properly maintained pheromone traps rather than from a single isolated capture.",
-        qualifier:
-          "The exact biofix method and degree-day model should follow the regional program being used."
-      }
-    ];
-
-    function findAnswer(question) {
-      const normalizedQuestion = question
-        .toLowerCase()
-        .replace(/[^\w\s]/g, " ")
-        .replace(/\s+/g, " ")
-        .trim();
-
-      let bestMatch = null;
-      let bestScore = 0;
-
-      for (const answer of sampleAnswers) {
-        let score = 0;
-
-        for (const keyword of answer.keywords) {
-          if (normalizedQuestion.includes(keyword)) {
-            score += keyword.split(" ").length;
-          }
-        }
-
-        if (score > bestScore) {
-          bestScore = score;
-          bestMatch = answer;
-        }
-      }
-
-      return bestMatch;
-    }
-
-    function displayAnswer(question) {
-      const trimmedQuestion = question.trim();
-
-      if (!trimmedQuestion) {
+    function submitQuestion() {
+      const question = questionInput.value.trim();
+      if (!question) {
         questionInput.focus();
         return;
       }
 
-      const answer = findAnswer(trimmedQuestion);
-
-      demoMessage.classList.remove("visible");
-
-      if (answer) {
-        resultCategory.textContent = answer.category;
-        resultTitle.textContent = answer.title;
-        resultAnswer.textContent = answer.answer;
-        resultQualifier.textContent = answer.qualifier;
-      } else {
-        resultCategory.textContent = "Question received";
-        resultTitle.textContent = trimmedQuestion;
-        resultAnswer.textContent =
-          "The opening-page demonstration received your question. The future question engine will interpret the request, search the approved database, and return the shortest supported answer.";
-        resultQualifier.textContent =
-          "This starter version currently contains only three demonstration answers. It is not yet connected to AI or the professional information database.";
-      }
-
+      resultAnswer.textContent = `You entered: “${question}”`;
+      resultQualifier.textContent = "The search box is ready for testing. The approved knowledge base and AI answer system will be connected next.";
       resultPanel.classList.add("visible");
-
-      resultPanel.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
+      resultPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
-    askButton.addEventListener("click", () => {
-      displayAnswer(questionInput.value);
+    askButton.addEventListener("click", submitQuestion);
+    questionInput.addEventListener("keydown", event => {
+      if (event.key === "Enter") submitQuestion();
     });
-
-    questionInput.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") {
-        displayAnswer(questionInput.value);
-      }
-    });
-
-    document
-      .querySelectorAll("[data-question]")
-      .forEach((button) => {
-        button.addEventListener("click", () => {
-          const question = button.dataset.question;
-
-          questionInput.value = question;
-          displayAnswer(question);
-        });
-      });
-
-    document
-      .querySelectorAll("[data-tool]")
-      .forEach((button) => {
-        button.addEventListener("click", () => {
-          const tool = button.dataset.tool;
-
-          const toolMessages = {
-            "degree-days": {
-              category: "Quick tool",
-              title: "Degree-Day Calculator",
-              answer:
-                "This will allow the user to select a pest model, enter a biofix date and location or temperature data, and calculate accumulated degree-days.",
-              qualifier:
-                "The first working version can begin with codling moth and manually entered temperatures before automated weather integration is added."
-            },
-            rotation: {
-              category: "Quick tool",
-              title: "Product Rotation",
-              answer:
-                "This will let the user select products already applied and identify remaining mode-of-action groups that may be suitable for the target pest.",
-              qualifier:
-                "Product availability must be filtered by crop, pest, label restrictions, seasonal limits, PHI, and regional recommendations."
-            },
-            product: {
-              category: "Quick tool",
-              title: "Product Lookup",
-              answer:
-                "This will return concise product facts such as active ingredient, IRAC or FRAC group, PHI, REI, and important application restrictions.",
-              qualifier:
-                "The current pesticide label must remain the final authority."
-            },
-            pest: {
-              category: "Quick tool",
-              title: "Pest Lookup",
-              answer:
-                "This will answer a specific pest question without forcing the user to read a complete pest profile.",
-              qualifier:
-                "The question engine will retrieve only the approved facts relevant to the user's request."
-            }
-          };
-
-          const message = toolMessages[tool];
-
-          resultCategory.textContent = message.category;
-          resultTitle.textContent = message.title;
-          resultAnswer.textContent = message.answer;
-          resultQualifier.textContent = message.qualifier;
-
-          resultPanel.classList.add("visible");
-          demoMessage.classList.remove("visible");
-
-          resultPanel.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        });
-      });
-
-    closeResult.addEventListener("click", () => {
-      resultPanel.classList.remove("visible");
-    });
-
-    document
-      .querySelectorAll(".demo-action")
-      .forEach((button) => {
-        button.addEventListener("click", () => {
-          demoMessage.classList.add("visible");
-        });
-      });
+    closeResult.addEventListener("click", () => resultPanel.classList.remove("visible"));
   </script>
 </body>
 </html>
