@@ -1,128 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="TFPM guided tree fruit pest management knowledge prototype" />
-  <title>TFPM Short</title>
-  <style>
-    :root{--bg:#f4f7f2;--surface:#fff;--surface-soft:#edf3ea;--text:#1f2d24;--muted:#66736b;--border:#d7e0d9;--accent:#315f3c;--accent-dark:#24492d;--shadow:0 18px 50px rgba(40,65,48,.10)}
-    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at top right,rgba(91,132,100,.13),transparent 32rem),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,textarea,input{font:inherit}button{cursor:pointer}.app-shell{width:min(920px,calc(100% - 28px));margin:0 auto;padding:28px 0 64px}.app-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:34px}.eyebrow{margin:0 0 6px;color:var(--accent);font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}h1{margin:0;font-size:clamp(2rem,7vw,3.7rem);line-height:.95}.text-button{border:0;background:transparent;color:var(--accent);font-weight:700;padding:8px}.breadcrumb{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-bottom:18px;color:var(--muted);font-size:.9rem}.breadcrumb button{border:0;background:transparent;color:var(--accent);font-weight:750;padding:0}.hero{margin-bottom:28px}.hero h2{margin:0 0 10px;font-size:clamp(2rem,6vw,3.4rem);letter-spacing:-.04em}.hero>p{margin:0 0 22px;color:var(--muted);font-size:1.05rem;line-height:1.6}.search-panel{background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);padding:16px}textarea{width:100%;min-height:105px;resize:vertical;border:0;outline:0;color:var(--text);background:transparent;font-size:1.08rem;line-height:1.5}textarea::placeholder{color:#94a097}.search-actions{display:flex;justify-content:flex-end;align-items:center;border-top:1px solid var(--border);padding-top:13px}.primary-button{flex:0 0 auto;border:0;border-radius:999px;background:var(--accent);color:white;padding:12px 21px;font-weight:800}.primary-button:hover{background:var(--accent-dark)}.conversation{display:grid;gap:16px}.message{border-radius:18px;padding:18px 20px;border:1px solid var(--border);background:var(--surface)}.message.user{margin-left:min(120px,14vw);background:var(--accent);color:white;border-color:var(--accent)}.message.assistant{margin-right:min(80px,10vw)}.message-label{margin-bottom:8px;color:var(--muted);font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.message.user .message-label{color:rgba(255,255,255,.72)}.message-body{line-height:1.62}.message-body p{margin:0 0 12px}.message-body p:last-child{margin-bottom:0}.message-body ul,.message-body ol{margin:9px 0 0;padding-left:22px}.message-body li{margin:7px 0}.option-grid{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}.option-button{border:1px solid #afc1b3;border-radius:999px;background:var(--surface-soft);color:var(--accent-dark);padding:10px 15px;font-weight:750;text-align:left}.option-button:hover{background:#dde9dd;border-color:#8ca391}.refinement-box{margin-top:16px;border-top:1px solid var(--border);padding-top:16px}.refinement-box label{display:block;font-weight:750;margin-bottom:8px}.refinement-row{display:flex;gap:10px}.refinement-row input{flex:1;min-width:0;border:1px solid var(--border);border-radius:12px;padding:12px 13px;outline:none}.answer-card{background:#f8faf7;border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin:4px 0}.answer-card h3{margin:0 0 10px;font-size:1.15rem}.answer-card h4{margin:17px 0 5px;font-size:1rem}.answer-card p{margin:0 0 10px}.answer-card p:last-child{margin-bottom:0}.small-note{color:var(--muted);font-size:.93rem}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}@media(max-width:640px){.app-shell{width:min(100% - 18px,920px);padding-top:18px}.message.user,.message.assistant{margin-left:0;margin-right:0}.refinement-row{flex-direction:column}}
-  </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TFPM Short</title>
+<style>
+:root{--bg:#f4f7f2;--surface:#fff;--soft:#edf3ea;--text:#1f2d24;--muted:#66736b;--border:#d7e0d9;--accent:#315f3c}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.app{width:min(920px,calc(100% - 28px));margin:auto;padding:28px 0 64px}.head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:34px}.eyebrow{margin:0 0 6px;color:var(--accent);font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}h1{margin:0;font-size:clamp(2rem,7vw,3.7rem);line-height:.95}.text-btn{border:0;background:transparent;color:var(--accent);font-weight:700}.crumb{margin-bottom:18px;color:var(--muted);font-size:.9rem}.crumb button{border:0;background:transparent;color:var(--accent);font-weight:750;padding:0}.hero h2{font-size:clamp(2rem,6vw,3.4rem);margin:0 0 10px}.hero>p{color:var(--muted);line-height:1.6}.search{background:#fff;border:1px solid var(--border);border-radius:20px;padding:16px;box-shadow:0 18px 50px rgba(40,65,48,.1)}textarea{width:100%;min-height:105px;border:0;outline:0;resize:vertical;font:inherit;font-size:1.08rem}.actions{display:flex;justify-content:flex-end;border-top:1px solid var(--border);padding-top:13px}.primary{border:0;border-radius:999px;background:var(--accent);color:#fff;padding:12px 21px;font-weight:800}.conversation{display:grid;gap:16px;margin-top:28px}.message{border:1px solid var(--border);border-radius:18px;background:#fff;padding:18px 20px}.message.user{margin-left:min(120px,14vw);background:var(--accent);color:#fff}.label{margin-bottom:8px;color:var(--muted);font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.user .label{color:rgba(255,255,255,.75)}.body{line-height:1.62}.body p{margin:0 0 12px}.options{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}.option{border:1px solid #afc1b3;border-radius:999px;background:var(--soft);color:#24492d;padding:10px 15px;font-weight:750}.refine{margin-top:16px;border-top:1px solid var(--border);padding-top:16px}.refine label{display:block;font-weight:750;margin-bottom:8px}.row{display:flex;gap:10px}.row input{flex:1;min-width:0;border:1px solid var(--border);border-radius:12px;padding:12px 13px;font:inherit}.answer{background:#f8faf7;border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px}.answer h3{margin:0 0 10px}.small{color:var(--muted);font-size:.93rem}@media(max-width:640px){.message.user{margin-left:0}.row{flex-direction:column}}
+</style>
 </head>
-<body>
-  <main class="app-shell">
-    <header class="app-header"><div><p class="eyebrow">Tree Fruit Pest Management</p><h1>TFPM Short</h1></div><button id="restartBtn" class="text-button" type="button">Home</button></header>
-    <nav id="breadcrumb" class="breadcrumb" aria-label="Current topic"></nav>
-    <section class="hero">
-      <h2>How can I help?</h2>
-      <p>Ask a tree-fruit pest management question. TFPM will answer a specific question directly and narrow a broad question before giving unnecessary detail.</p>
-      <form id="searchForm" class="search-panel"><label class="sr-only" for="searchInput">Enter your question or topic</label><textarea id="searchInput" rows="3" placeholder="Enter your question or topic..." autocomplete="off"></textarea><div class="search-actions"><button class="primary-button" type="submit">Continue</button></div></form>
-    </section>
-    <section id="conversation" class="conversation" aria-live="polite"></section>
-  </main>
-  <template id="messageTemplate"><article class="message"><div class="message-label"></div><div class="message-body"></div></article></template>
-  <script>
-    const searchForm=document.getElementById('searchForm'),searchInput=document.getElementById('searchInput'),conversation=document.getElementById('conversation'),restartBtn=document.getElementById('restartBtn'),breadcrumb=document.getElementById('breadcrumb'),messageTemplate=document.getElementById('messageTemplate');
-
-    const monitoringQuestions=[
-      'Which traps and lures should I use?',
-      'Where should I place the traps?',
-      'How many traps do I need?',
-      'How often should I check the traps?',
-      'How do I establish biofix?',
-      'How do I monitor under mating disruption?',
-      'Show me the complete monitoring guide'
-    ];
-
-    const monitoringKnowledge={
-      trapQuantity:{
-        intent:'trap quantity',
-        triggers:['how many traps','number of traps','trap density','traps per acre','traps needed on farm','traps needed in orchard'],
-        clarification:'How many acres of apples are you monitoring, and are they in one continuous block or several separate blocks?',
-        answer:`<p>A common starting point is about one trap per five acres, with at least two traps per block.</p><p>The number used in practice is a balance among acreage, the value of additional monitoring information, the cost of traps and lures, and the time required to service them.</p><p>Place the traps in the portions of the orchard that are most useful to monitor. Growers commonly concentrate traps in areas with historically higher codling moth pressure rather than distributing them uniformly.</p><p>Additional traps can improve coverage when the acreage or layout cannot be represented adequately by the basic number. Whether that added information is worth the additional materials and checking time depends on the monitoring needs of the farm.</p>`,
-        related:['Where should I place the traps?']
-      }
-    };
-
-    let context=[];
-
-    function addMessage(role,html){const node=messageTemplate.content.cloneNode(true),article=node.querySelector('.message');article.classList.add(role);node.querySelector('.message-label').textContent=role==='user'?'You':'TFPM';node.querySelector('.message-body').innerHTML=html;conversation.appendChild(node);article.scrollIntoView({behavior:'smooth',block:'nearest'});return article}
-    function normalize(v){return v.trim().toLowerCase().replace(/[?!.]+$/,'').replace(/\bcm\b/g,'codling moth')}
-    function escapeHtml(v){return v.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
-    function setContext(parts){context=parts;renderBreadcrumb();updatePlaceholder()}
-    function renderBreadcrumb(){breadcrumb.innerHTML='';const home=document.createElement('button');home.textContent='Home';home.onclick=reset;breadcrumb.appendChild(home);context.forEach((part,i)=>{breadcrumb.append(' › ');const b=document.createElement('button');b.textContent=part;b.onclick=()=>goToContext(i);breadcrumb.appendChild(b)})}
-    function updatePlaceholder(){searchInput.placeholder=context.length?`Ask another question about ${context[context.length-1]}...`:'Enter your question or topic...'}
-    function goToContext(i){conversation.innerHTML='';const next=context.slice(0,i+1);setContext(next);if(next[0]==='Codling moth'&&next[1]==='Monitoring')showMonitoringClarifier(false);else if(next[0]==='Codling moth')showCodlingMenu(false)}
-    function refinementBox(label='Ask another question',placeholder='Enter another question...'){return `<form class="refinement-box"><label>${escapeHtml(label)}</label><div class="refinement-row"><input type="text" placeholder="${escapeHtml(placeholder)}"><button class="primary-button" type="submit">Continue</button></div></form>`}
-    function optionButtons(options){return options.map(x=>`<button class="option-button" data-option="${escapeHtml(x)}">${escapeHtml(x)}</button>`).join('')}
-    function wire(article){article.querySelectorAll('[data-option]').forEach(button=>button.onclick=()=>processEntry(button.dataset.option));const form=article.querySelector('.refinement-box');if(form)form.onsubmit=e=>{e.preventDefault();const v=form.querySelector('input').value.trim();if(v)processEntry(v)}}
-    function showCodlingMenu(updateContext=true){if(updateContext)setContext(['Codling moth']);const options=['How do I monitor codling moth?','How do I identify codling moth?','What damage does codling moth cause?','How do degree days guide timing?','How is codling moth managed?'];const a=addMessage('assistant',`<p><strong>What would you like to know about codling moth?</strong></p><div class="option-grid">${optionButtons(options)}</div>${refinementBox('Ask a specific codling moth question','Enter a codling moth question...')}`);wire(a)}
-    function showMonitoringClarifier(updateContext=true){if(updateContext)setContext(['Codling moth','Monitoring']);const a=addMessage('assistant',`<p><strong>Which part of codling moth monitoring do you need?</strong></p><p class="small-note">Choose one area, or request the complete guide.</p><div class="option-grid">${optionButtons(monitoringQuestions)}</div>${refinementBox('Ask a more specific monitoring question','Enter a monitoring question...')}`);wire(a)}
-    function renderAnswer(title,html,related=[]){const relatedHtml=related.length?`<div class="refinement-box"><label>Related questions</label><div class="option-grid">${optionButtons(related)}</div></div>`:'';const a=addMessage('assistant',`<div class="answer-card"><h3>${escapeHtml(title)}</h3>${html}</div>${relatedHtml}${refinementBox(`Ask another question about ${context[context.length-1]||'this topic'}`,'Enter another question...')}`);wire(a)}
-
-    function answerMonitoring(text){
-      if(/complete monitoring|everything.*monitor|full monitoring|all.*monitor/.test(text)){
-        setContext(['Codling moth','Monitoring','Complete guide']);
-        renderAnswer('Complete codling moth monitoring guide',`<h4>1. Put traps out before first flight</h4><p>Deploy traps before adult emergence is expected so the beginning of flight is not missed.</p><h4>2. Use the correct trap-and-lure combination</h4><p>Use a codling moth pheromone trap and select the lure for the purpose of the monitoring program. Orchards under mating disruption may require a different lure than non-disrupted orchards.</p><h4>3. Place traps consistently</h4><p>Hang traps in the upper portion of the canopy, toward the outside of the tree, with the openings free of leaves and branches. Consistent placement makes comparisons among traps more meaningful.</p><h4>4. Use enough traps to represent the block</h4><p>Use at least two traps per block. Larger, irregular, or historically troublesome blocks may require additional traps.</p><h4>5. Check frequently while establishing biofix</h4><p>Inspect traps frequently enough to identify the beginning of sustained flight. After biofix, continue checking on a regular schedule and record catches by trap and date.</p><h4>6. Maintain the equipment</h4><p>Keep trap openings clear, replace dirty or ineffective liners, and replace lures at the interval specified for that lure.</p><h4>7. Use biofix with the appropriate degree-day model</h4><p>Biofix begins the degree-day accumulation used by the selected regional model. Trap catch alone should not automatically be treated as a spray recommendation.</p>`,monitoringQuestions.slice(0,-1));return true
-      }
-      if(/which.*trap|what kind.*trap|trap.*lure|traps and lures|which.*lure|what lure/.test(text)){
-        setContext(['Codling moth','Monitoring','Traps and lures']);
-        renderAnswer('Which traps and lures should I use?',`<p>Use a trap designed for codling moth pheromone monitoring, commonly a delta-style trap with a replaceable sticky liner.</p><p>The lure depends on the orchard and the purpose of monitoring. A standard sex-pheromone lure is commonly used in orchards without mating disruption. In mating-disrupted orchards, standard lure catches may be strongly suppressed, so a lure intended for disrupted blocks may be needed.</p><p>Do not treat “codling moth lure” as a single interchangeable product. Check the lure type, loading, intended use, and replacement interval before deployment.</p>`,['Where should I place the traps?','How often should I replace the lure?','How do I monitor under mating disruption?']);return true
-      }
-      if(/where.*trap|place.*trap|trap placement|hang.*trap/.test(text)){
-        setContext(['Codling moth','Monitoring','Trap placement']);
-        renderAnswer('Where should I place codling moth traps?',`<p>Hang the trap in the upper portion of the tree canopy, toward the outside of the canopy where air can move through it.</p><p>Keep the trap entrance clear. Leaves, shoots, or branches should not block moth entry or press against the sticky liner.</p><p>Use a similar height and canopy position for traps throughout the block. That consistency helps prevent placement differences from being mistaken for population differences.</p>`,['How many traps do I need?','Which traps and lures should I use?','How do I monitor under mating disruption?']);return true
-      }
-      if((/\bhow many\b|\bnumber of\b|\btrap density\b/.test(text)&&/\btraps?\b/.test(text))||(/\btraps?\b/.test(text)&&/\bneed\b/.test(text)&&/\b(?:farm|orchard|block|acre|acres)\b/.test(text))){
-        setContext(['Codling moth','Monitoring','Trap density']);
-        const entry=monitoringKnowledge.trapQuantity;
-        const hasAcreage=/\b\d+(?:\.\d+)?\s*(?:acre|acres|ac)\b/.test(text);
-        if(!hasAcreage){
-          const a=addMessage('assistant',`<p><strong>${entry.clarification}</strong></p>${refinementBox('Provide the acreage and block arrangement','Example: 18 acres in two separate blocks')}`);wire(a);return true
-        }
-        renderAnswer('How many codling moth traps do I need?',entry.answer,entry.related);return true
-      }
-      if(/how often.*check|check.*trap|inspect.*trap|checking traps/.test(text)){
-        setContext(['Codling moth','Monitoring','Checking traps']);
-        renderAnswer('How often should I check codling moth traps?',`<p>Check traps frequently while trying to establish biofix. Daily checking provides the clearest record of when sustained flight begins, but the practical interval must still be short enough that the beginning of flight is not missed.</p><p>After biofix is established, check traps on a regular schedule—commonly weekly—unless the monitoring purpose requires closer observation.</p><p>At each check, record the catch for each trap, remove counted moths when appropriate, confirm that the opening is clear, and replace the liner if dirt, insects, or loss of stickiness interferes with capture.</p>`,['How do I establish biofix?','How often should I replace the lure?']);return true
-      }
-      if(/biofix|first sustained|establish.*fix/.test(text)){
-        setContext(['Codling moth','Monitoring','Biofix']);
-        renderAnswer('How do I establish codling moth biofix?',`<p>Biofix is the starting date used to begin degree-day accumulation for the selected codling moth model. It should represent the beginning of sustained adult flight, not simply an isolated moth that may be caught well before the main flight begins.</p><p>Use catches from properly placed traps, check them frequently, and apply the definition required by the regional model you intend to use. Once biofix is set, keep a record of the date and the evidence used to establish it.</p><p>A trap catch by itself is not automatically a spray decision. Biofix connects monitoring to the degree-day model used for later timing decisions.</p>`,['How often should I check the traps?','How do degree days guide timing?','What if catches are sporadic?']);return true
-      }
-      if(/mating disruption|disrupted orchard|under disruption/.test(text)){
-        setContext(['Codling moth','Monitoring','Mating disruption']);
-        renderAnswer('How do I monitor under mating disruption?',`<p>Mating disruption can greatly reduce catches in standard pheromone traps even when codling moth is present. Use a trap-and-lure combination intended for monitoring in disrupted orchards rather than assuming a standard lure will provide the same information.</p><p>Place traps carefully and maintain consistent locations. Because trap shutdown can make low catches difficult to interpret, monitoring may also need to consider orchard history, fruit injury, border areas, and other evidence of local pressure.</p><p>Do not interpret an empty standard pheromone trap as proof that the orchard has no codling moth activity.</p>`,['Which traps and lures should I use?','Where should I place the traps?','How many traps do I need?']);return true
-      }
-      if(/replace.*lure|lure.*replace|lure interval/.test(text)){
-        setContext(['Codling moth','Monitoring','Lure replacement']);
-        renderAnswer('How often should I replace codling moth lures?',`<p>Replace each lure according to the labeled or manufacturer-specified field life for that exact lure. Replacement intervals are not identical across all lure types and loadings.</p><p>Record the installation and replacement date for every trap. Do not rely on appearance—the lure may look unchanged even after its effective field life has passed.</p>`,['Which traps and lures should I use?','How often should I check the traps?']);return true
-      }
-      return false
-    }
-
-    function isBroadMonitoring(text){return /^(how do i |how should i |tell me how to |how to )?monitor( for)? codling moth$/.test(text)||/^codling moth monitoring$/.test(text)||/^monitoring codling moth$/.test(text)||/^how do i monitor for codling moth$/.test(text)}
-
-    function processEntry(value){
-      addMessage('user',`<p>${escapeHtml(value)}</p>`);searchInput.value='';const text=normalize(value);
-      if(isBroadMonitoring(text)){showMonitoringClarifier(true);return}
-      if(/codling moth/.test(text)&&answerMonitoring(text)){renderBreadcrumb();return}
-      if(context[0]==='Codling moth'&&context[1]==='Monitoring'){
-        if(answerMonitoring(text))return;
-        if(text==='monitoring'||text==='codling moth monitoring'){showMonitoringClarifier();return}
-      }
-      if(/how do i monitor codling moth|how do i monitor for codling moth/.test(text)){showMonitoringClarifier(true);return}
-      if(text==='codling moth'){showCodlingMenu(true);return}
-      if(/identify.*codling moth|what does.*codling moth.*look/.test(text)){setContext(['Codling moth','Identification']);renderAnswer('How do I identify codling moth?',`<p>The current prototype does not yet contain a complete identification answer. This is an example of a question that should be added to the TFPM knowledge database rather than answered with a vague substitute.</p>`);return}
-      if(/damage.*codling moth|codling moth damage/.test(text)){setContext(['Codling moth','Damage']);renderAnswer('What damage does codling moth cause?',`<p>Codling moth larvae enter fruit and feed internally, often toward the seed cavity. Entry holes may contain frass, and damaged fruit may drop prematurely or remain on the tree with internal feeding injury.</p>`);return}
-      if(/degree day|degree-day/.test(text)&&/codling moth/.test(text)){setContext(['Codling moth','Degree-day timing']);renderAnswer('How do degree days guide codling moth timing?',`<p>Degree days estimate insect development after the model's starting point, often biofix. The correct starting rule and action timings depend on the regional model being used, so TFPM should ask which model or location applies before giving a numerical recommendation.</p>`);return}
-      if(/codling moth/.test(text)){showCodlingMenu(true);return}
-      addMessage('assistant',`<p>The current test knowledge set is limited to codling moth monitoring. Try asking <strong>How do I monitor for codling moth?</strong> or a specific question such as <strong>Which traps and lures should I use?</strong></p>`)
-    }
-
-    function reset(){conversation.innerHTML='';setContext([]);searchInput.value='';searchInput.focus()}
-    searchForm.onsubmit=e=>{e.preventDefault();const v=searchInput.value.trim();if(v)processEntry(v)};restartBtn.onclick=reset;setContext([]);searchInput.focus();
-  </script>
-</body>
-</html>
+<body><main class="app">
+<header class="head"><div><p class="eyebrow">Tree Fruit Pest Management</p><h1>TFPM Short</h1></div><button id="home" class="text-btn">Home</button></header>
+<nav id="crumb" class="crumb"></nav>
+<section class="hero"><h2>How can I help?</h2><p>Ask a tree-fruit pest management question. TFPM will narrow broad questions before providing unnecessary detail.</p><form id="search" class="search"><textarea id="input" placeholder="Enter your question or topic..."></textarea><div class="actions"><button class="primary">Continue</button></div></form></section>
+<section id="conversation" class="conversation"></section>
+</main>
+<script>
+const input=document.getElementById('input'),conversation=document.getElementById('conversation'),crumb=document.getElementById('crumb');
+let context=[],pending=null;
+const questions=['Which traps and lures should I use?','Where should I place the traps?','How many traps do I need?','How often should I check the traps?','How do I establish biofix?','How do I monitor under mating disruption?','Show me the complete monitoring guide'];
+const trapAnswer=`<p>A common starting point is about one trap per five acres, with at least two traps per block.</p><p>The number used in practice is a balance among acreage, the usefulness of additional monitoring information, the cost of traps and lures, and the time required to check them.</p><p>Growers commonly place traps in portions of the orchard with historically higher codling moth pressure rather than distributing them uniformly. Additional traps may be useful when the acreage or block arrangement cannot be represented adequately by the basic number.</p>`;
+function n(v){return v.trim().toLowerCase().replace(/[?!.]+$/,'').replace(/\bcm\b/g,'codling moth')}
+function esc(v){return v.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
+function msg(role,html){const a=document.createElement('article');a.className='message '+role;a.innerHTML=`<div class="label">${role==='user'?'You':'TFPM'}</div><div class="body">${html}</div>`;conversation.appendChild(a);a.scrollIntoView({behavior:'smooth',block:'nearest'});wire(a);return a}
+function buttons(items){return `<div class="options">${items.map(x=>`<button class="option" data-value="${esc(x)}">${esc(x)}</button>`).join('')}</div>`}
+function refine(label,placeholder){return `<form class="refine"><label>${esc(label)}</label><div class="row"><input placeholder="${esc(placeholder)}"><button class="primary">Continue</button></div></form>`}
+function wire(a){a.querySelectorAll('[data-value]').forEach(b=>b.onclick=()=>process(b.dataset.value));const f=a.querySelector('.refine');if(f)f.onsubmit=e=>{e.preventDefault();const v=f.querySelector('input').value.trim();if(v)process(v)}}
+function setContext(c){context=c;crumb.innerHTML='<button data-home>Home</button>'+c.map((x,i)=>` › <button data-i="${i}">${esc(x)}</button>`).join('');crumb.querySelector('[data-home]').onclick=reset;crumb.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{context=context.slice(0,+b.dataset.i+1);conversation.innerHTML='';pending=null;context[1]==='Monitoring'?showMonitoring():showCodling()})}
+function showCodling(){setContext(['Codling moth']);msg('assistant',`<p><strong>What would you like to know about codling moth?</strong></p>${buttons(['How do I monitor codling moth?','How do I identify codling moth?','What damage does codling moth cause?','How do degree days guide timing?','How is codling moth managed?'])}${refine('Ask a specific codling moth question','Enter a codling moth question...')}`)}
+function showMonitoring(){setContext(['Codling moth','Monitoring']);msg('assistant',`<p><strong>Which part of codling moth monitoring do you need?</strong></p>${buttons(questions)}${refine('Ask a more specific monitoring question','Enter a monitoring question...')}`)}
+function askPestForTraps(){pending='trap-pest';msg('assistant',`<p><strong>Which pest are the traps for?</strong></p>${buttons(['Codling moth'])}${refine('Enter the pest','Example: codling moth')}`)}
+function askTrapDetails(){pending='trap-details';setContext(['Codling moth','Monitoring','Trap quantity']);msg('assistant',`<p><strong>How many acres of apples are you monitoring, and are they in one continuous block or several separate blocks?</strong></p>${refine('Provide the acreage and block arrangement','Example: 31 acres over 4 blocks')}`)}
+function parseDetails(text){const acres=text.match(/(\d+(?:\.\d+)?)\s*(?:acre|acres|ac)\b/);const blocks=text.match(/(\d+)\s*(?:block|blocks)\b/);if(!acres)return null;return{acres:+acres[1],blocks:blocks?+blocks[1]:null}}
+function showTrapResult(details){pending=null;const byAcre=Math.ceil(details.acres/5),byBlocks=details.blocks?details.blocks*2:2,total=Math.max(byAcre,byBlocks);const blockText=details.blocks?` across ${details.blocks} blocks`:'';msg('assistant',`<div class="answer"><h3>How many codling moth traps do I need?</h3><p>For ${details.acres} acres${blockText}, the basic starting calculation is <strong>${total} traps</strong>: about one trap per five acres, while maintaining at least two traps per block.</p>${trapAnswer}</div>${buttons(['Where should I place the traps?'])}${refine('Ask another question about trap quantity','Enter another question...')}`)}
+function answerMonitoring(text){if(/how many|number of|trap density|traps per/.test(text)&&/trap/.test(text)){askTrapDetails();return true}if(/where.*trap|place.*trap/.test(text)){setContext(['Codling moth','Monitoring','Trap placement']);msg('assistant',`<div class="answer"><h3>Where should I place codling moth traps?</h3><p>Place traps in the upper portion of the canopy with the opening clear. Use the available traps in the orchard areas most useful to monitor, including historically higher-pressure locations.</p></div>${refine('Ask another placement question','Enter another question...')}`);return true}return false}
+function process(value){msg('user',`<p>${esc(value)}</p>`);input.value='';const text=n(value);
+if(pending==='trap-pest'){if(/codling moth/.test(text)){askTrapDetails();return}askPestForTraps();return}
+if(pending==='trap-details'){const d=parseDetails(text);if(d){showTrapResult(d);return}msg('assistant',`<p><strong>Please include the acreage.</strong></p>${refine('Provide acreage and block arrangement','Example: 31 acres over 4 blocks')}`);return}
+if((/how many|number of/.test(text)&&/trap/.test(text))&&!/codling moth/.test(text)&&context[0]!=='Codling moth'){askPestForTraps();return}
+if(/codling moth/.test(text)&&/monitor/.test(text)&&!/how many|where|which|often|biofix|mating/.test(text)){showMonitoring();return}
+if(/codling moth/.test(text)&&answerMonitoring(text))return;
+if(context[1]==='Monitoring'&&answerMonitoring(text))return;
+if(text==='codling moth'){showCodling();return}
+if(/codling moth/.test(text)){showCodling();return}
+msg('assistant','<p>The current test knowledge set is limited to codling moth monitoring.</p>')}
+function reset(){conversation.innerHTML='';context=[];pending=null;crumb.innerHTML='';input.value='';input.focus()}
+document.getElementById('search').onsubmit=e=>{e.preventDefault();const v=input.value.trim();if(v)process(v)};document.getElementById('home').onclick=reset;reset();
+</script></body></html>
