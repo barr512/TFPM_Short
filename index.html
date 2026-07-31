@@ -35,6 +35,16 @@
       'Show me the complete monitoring guide'
     ];
 
+    const monitoringKnowledge={
+      trapQuantity:{
+        intent:'trap quantity',
+        triggers:['how many traps','number of traps','trap density','traps per acre','traps needed on farm','traps needed in orchard'],
+        clarification:'How many acres of apples are you monitoring, and are they in one continuous block or several separate blocks?',
+        answer:`<p>A common starting point is about one trap per five acres, with at least two traps per block.</p><p>The number used in practice is a balance among acreage, the value of additional monitoring information, the cost of traps and lures, and the time required to service them.</p><p>Place the traps in the portions of the orchard that are most useful to monitor. Growers commonly concentrate traps in areas with historically higher codling moth pressure rather than distributing them uniformly.</p><p>Additional traps can improve coverage when the acreage or layout cannot be represented adequately by the basic number. Whether that added information is worth the additional materials and checking time depends on the monitoring needs of the farm.</p>`,
+        related:['Where should I place the traps?']
+      }
+    };
+
     let context=[];
 
     function addMessage(role,html){const node=messageTemplate.content.cloneNode(true),article=node.querySelector('.message');article.classList.add(role);node.querySelector('.message-label').textContent=role==='user'?'You':'TFPM';node.querySelector('.message-body').innerHTML=html;conversation.appendChild(node);article.scrollIntoView({behavior:'smooth',block:'nearest'});return article}
@@ -66,7 +76,12 @@
       }
       if((/\bhow many\b|\bnumber of\b|\btrap density\b/.test(text)&&/\btraps?\b/.test(text))||(/\btraps?\b/.test(text)&&/\bneed\b/.test(text)&&/\b(?:farm|orchard|block|acre|acres)\b/.test(text))){
         setContext(['Codling moth','Monitoring','Trap density']);
-        renderAnswer('How many codling moth traps do I need?',`<p>Use no fewer than two traps in a block so one trap does not represent the entire orchard by itself.</p><p>A common starting density is about one trap per five acres. Add traps when a block is large, irregularly shaped, divided by terrain, or has known high-pressure areas that may not be represented by the basic density.</p><p>Record catches by individual trap rather than combining them immediately. Differences among trap locations can be useful.</p>`,['Where should I place the traps?','How often should I check the traps?']);return true
+        const entry=monitoringKnowledge.trapQuantity;
+        const hasAcreage=/\b\d+(?:\.\d+)?\s*(?:acre|acres|ac)\b/.test(text);
+        if(!hasAcreage){
+          const a=addMessage('assistant',`<p><strong>${entry.clarification}</strong></p>${refinementBox('Provide the acreage and block arrangement','Example: 18 acres in two separate blocks')}`);wire(a);return true
+        }
+        renderAnswer('How many codling moth traps do I need?',entry.answer,entry.related);return true
       }
       if(/how often.*check|check.*trap|inspect.*trap|checking traps/.test(text)){
         setContext(['Codling moth','Monitoring','Checking traps']);
