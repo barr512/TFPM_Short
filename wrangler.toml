@@ -1,0 +1,11 @@
+name = "tfpm-api"
+main = "worker.js"
+compatibility_date = "2026-07-31"
+
+[ai]
+binding = "AI"
+
+[[rules]]
+type = "Data"
+globs = ["**/*.json"]
+fallthrough = true
