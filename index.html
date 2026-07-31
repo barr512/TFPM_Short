@@ -4,67 +4,58 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>TFPM Short</title>
 <style>
-:root{--bg:#f4f7f2;--surface:#fff;--soft:#edf3ea;--text:#1f2d24;--muted:#66736b;--border:#d7e0d9;--accent:#315f3c}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.app{width:min(920px,calc(100% - 28px));margin:auto;padding:28px 0 64px}.head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:34px}.eyebrow{margin:0 0 6px;color:var(--accent);font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}h1{margin:0;font-size:clamp(2rem,7vw,3.7rem);line-height:.95}.text-btn{border:0;background:transparent;color:var(--accent);font-weight:700}.crumb{margin-bottom:18px;color:var(--muted);font-size:.9rem}.crumb button{border:0;background:transparent;color:var(--accent);font-weight:750;padding:0}.hero h2{font-size:clamp(2rem,6vw,3.4rem);margin:0 0 10px}.hero>p{color:var(--muted);line-height:1.6}.search{background:#fff;border:1px solid var(--border);border-radius:20px;padding:16px;box-shadow:0 18px 50px rgba(40,65,48,.1)}textarea{width:100%;min-height:105px;border:0;outline:0;resize:vertical;font:inherit;font-size:1.08rem}.actions{display:flex;justify-content:flex-end;border-top:1px solid var(--border);padding-top:13px}.primary{border:0;border-radius:999px;background:var(--accent);color:#fff;padding:12px 21px;font-weight:800}.conversation{display:grid;gap:16px;margin-top:28px}.message{border:1px solid var(--border);border-radius:18px;background:#fff;padding:18px 20px}.message.user{margin-left:min(120px,14vw);background:var(--accent);color:#fff}.label{margin-bottom:8px;color:var(--muted);font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.user .label{color:rgba(255,255,255,.75)}.body{line-height:1.62}.body p{margin:0 0 12px}.options{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}.option{border:1px solid #afc1b3;border-radius:999px;background:var(--soft);color:#24492d;padding:10px 15px;font-weight:750}.refine{margin-top:16px;border-top:1px solid var(--border);padding-top:16px}.refine label{display:block;font-weight:750;margin-bottom:8px}.row{display:flex;gap:10px}.row input{flex:1;min-width:0;border:1px solid var(--border);border-radius:12px;padding:12px 13px;font:inherit}.answer{background:#f8faf7;border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px}.answer h3{margin:0 0 10px}.small{color:var(--muted);font-size:.93rem}@media(max-width:640px){.message.user{margin-left:0}.row{flex-direction:column}}
+:root{--bg:#f4f7f2;--surface:#fff;--soft:#edf3ea;--text:#1f2d24;--muted:#66736b;--border:#d7e0d9;--accent:#315f3c}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.app{width:min(920px,calc(100% - 28px));margin:auto;padding:28px 0 64px}.head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:34px}.eyebrow{margin:0 0 6px;color:var(--accent);font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}h1{margin:0;font-size:clamp(2rem,7vw,3.7rem);line-height:.95}.text-btn{border:0;background:transparent;color:var(--accent);font-weight:700}.hero h2{font-size:clamp(2rem,6vw,3.4rem);margin:0 0 10px}.hero>p{color:var(--muted);line-height:1.6}.search{background:#fff;border:1px solid var(--border);border-radius:20px;padding:16px;box-shadow:0 18px 50px rgba(40,65,48,.1)}textarea{width:100%;min-height:105px;border:0;outline:0;resize:vertical;font:inherit;font-size:1.08rem;background:transparent}.actions{display:flex;justify-content:flex-end;border-top:1px solid var(--border);padding-top:13px}.primary{border:0;border-radius:999px;background:var(--accent);color:#fff;padding:12px 21px;font-weight:800;cursor:pointer}.primary:disabled{opacity:.58;cursor:wait}.conversation{display:grid;gap:16px;margin-top:28px}.message{border:1px solid var(--border);border-radius:18px;background:#fff;padding:18px 20px}.message.user{margin-left:min(120px,14vw);background:var(--accent);color:#fff}.label{margin-bottom:8px;color:var(--muted);font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.user .label{color:rgba(255,255,255,.75)}.body{line-height:1.62}.body p{margin:0 0 12px}.answer{background:#f8faf7;border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px}.answer p:last-child{margin-bottom:0}.refine{margin-top:16px;border-top:1px solid var(--border);padding-top:16px}.refine label{display:block;font-weight:750;margin-bottom:8px}.row{display:flex;gap:10px}.row input{flex:1;min-width:0;border:1px solid var(--border);border-radius:12px;padding:12px 13px;font:inherit}.diagnostics{margin-top:14px;border:1px dashed #aebbb1;border-radius:12px;background:#f7f9f6;padding:12px 14px;color:var(--muted);font-size:.86rem}.diagnostics summary{cursor:pointer;color:var(--accent);font-weight:800}.diagnostics dl{display:grid;grid-template-columns:max-content 1fr;gap:5px 12px;margin:12px 0 0}.diagnostics dt{font-weight:750}.diagnostics dd{margin:0;overflow-wrap:anywhere}.status{color:var(--muted);font-style:italic}@media(max-width:640px){.message.user{margin-left:0}.row{flex-direction:column}.diagnostics dl{grid-template-columns:1fr}}
 </style>
 </head>
 <body><main class="app">
-<header class="head"><div><p class="eyebrow">Tree Fruit Pest Management</p><h1>TFPM Short</h1></div><button id="home" class="text-btn">Home</button></header>
-<nav id="crumb" class="crumb"></nav>
-<section class="hero"><h2>How can I help?</h2><p>Ask a tree-fruit pest management question. TFPM will narrow broad questions before providing unnecessary detail.</p><form id="search" class="search"><textarea id="input" placeholder="Enter your question or topic..."></textarea><div class="actions"><button class="primary">Continue</button></div></form></section>
-<section id="conversation" class="conversation"></section>
+<header class="head"><div><p class="eyebrow">Tree Fruit Pest Management</p><h1>TFPM Short</h1></div><button id="home" class="text-btn" type="button">Home</button></header>
+<section class="hero"><h2>How can I help?</h2><p>Please use the search below for any topic or question relating to tree fruit.</p><form id="search" class="search"><textarea id="input" placeholder="Enter your question or topic..."></textarea><div class="actions"><button id="continueBtn" class="primary" type="submit">Continue</button></div></form></section>
+<section id="conversation" class="conversation" aria-live="polite"></section>
 </main>
 <script>
-const input=document.getElementById('input'),conversation=document.getElementById('conversation'),crumb=document.getElementById('crumb');
-let context=[],pending=null,workflow={intent:null,pest:null};
-const questions=['Which traps and lures should I use?','Where should I place the traps?','How many traps do I need?','How often should I check the traps?','How do I establish biofix?','How do I monitor under mating disruption?','Show me the complete monitoring guide'];
-const trapAnswer=`<p>The number used in practice is a balance among acreage, the usefulness of additional monitoring information, the cost of traps and lures, and the time required to check them.</p><p>Growers commonly place traps in portions of the orchard with historically higher codling moth pressure rather than distributing them uniformly.</p>`;
-function n(v){return v.trim().toLowerCase().replace(/[?!.]+$/,'').replace(/\bcm\b/g,'codling moth')}
-function esc(v){return v.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
-function msg(role,html){const a=document.createElement('article');a.className='message '+role;a.innerHTML=`<div class="label">${role==='user'?'You':'TFPM'}</div><div class="body">${html}</div>`;conversation.appendChild(a);a.scrollIntoView({behavior:'smooth',block:'nearest'});wire(a);return a}
-function buttons(items){return `<div class="options">${items.map(x=>`<button class="option" data-value="${esc(x)}">${esc(x)}</button>`).join('')}</div>`}
-function refine(label,placeholder){return `<form class="refine"><label>${esc(label)}</label><div class="row"><input placeholder="${esc(placeholder)}"><button class="primary">Continue</button></div></form>`}
-function wire(a){a.querySelectorAll('[data-value]').forEach(b=>b.onclick=()=>process(b.dataset.value));const f=a.querySelector('.refine');if(f)f.onsubmit=e=>{e.preventDefault();const v=f.querySelector('input').value.trim();if(v)process(v)}}
-function setContext(c){context=c;crumb.innerHTML='<button data-home>Home</button>'+c.map((x,i)=>` › <button data-i="${i}">${esc(x)}</button>`).join('');crumb.querySelector('[data-home]').onclick=reset}
-function detectIntent(text){if(/\bmonitor(?:ing)?\b|\bscout(?:ing)?\b|\btraps?\b|\blures?\b/.test(text))return'monitoring';if(/when.*spray|spray timing|when.*treat/.test(text))return'spray-timing';if(/identify|what is this|what insect/.test(text))return'identification';if(/damage|worms? in|fruit injury|apples? dropping/.test(text))return'damage';return null}
-function hasTrapQuantityIntent(text){return /how many|number of|trap density|traps per|need.*traps|traps.*need|put out.*traps|traps.*farm/.test(text)}
-function detectPest(text){if(/codling moth/.test(text))return'Codling moth';if(/oriental fruit moth|\bofm\b/.test(text))return'Oriental fruit moth';if(/tufted apple bud moth|\btabm\b/.test(text))return'Tufted apple bud moth';if(/brown marmorated stink bug|\bbmsb\b/.test(text))return'Brown marmorated stink bug';return null}
-function askPest(){pending='pest';msg('assistant',`<p><strong>Which pest are you monitoring?</strong></p>${buttons(['Codling moth (CM)','Oriental fruit moth (OFM)','Tufted apple bud moth (TABM)','Brown marmorated stink bug (BMSB)'])}${refine('Enter another pest','Enter the pest name...')}`)}
-function askMonitoringNeed(){pending='monitoring-need';setContext([workflow.pest||'Monitoring','Monitoring']);msg('assistant',`<p><strong>What do you need to know about monitoring ${workflow.pest?workflow.pest.toLowerCase():'this pest'}?</strong></p>${buttons(questions)}${refine('Ask a monitoring question','Enter your question...')}`)}
-function askTrapDetails(){pending='trap-details';setContext([workflow.pest||'Codling moth','Monitoring','Trap quantity']);msg('assistant',`<p><strong>How many acres are you monitoring, and are they in one continuous block or several separate blocks?</strong></p>${refine('Provide the acreage and block arrangement','Example: 31 acres over 4 blocks')}`)}
-function parseDetails(text){const acres=text.match(/(\d+(?:\.\d+)?)\s*(?:acre|acres|ac)\b/);const blocks=text.match(/(\d+)\s*(?:block|blocks)\b/);if(!acres)return null;return{acres:+acres[1],blocks:blocks?+blocks[1]:null}}
-function showTrapResult(details){pending=null;const pest=workflow.pest||'Codling moth';if(pest!=='Codling moth'){msg('assistant',`<p>TFPM recognizes the monitoring workflow for ${esc(pest)}, but the trap-density knowledge for that pest has not been added yet.</p>`);return}const byAcre=Math.ceil(details.acres/5),byBlocks=details.blocks?details.blocks*2:2,total=Math.max(byAcre,byBlocks);const blockText=details.blocks?` across ${details.blocks} blocks`:'';msg('assistant',`<div class="answer"><h3>How many codling moth traps do I need?</h3><p>For ${details.acres} acres${blockText}, a practical starting point is <strong>${total} traps</strong>: approximately one trap per five acres while maintaining at least two traps per block.</p>${trapAnswer}</div>${buttons(['Where should I place the traps?'])}${refine('Ask another question about trap quantity','Enter another question...')}`)}
-function answerMonitoring(text){if(hasTrapQuantityIntent(text)){askTrapDetails();return true}if(/where.*trap|place.*trap|hang.*trap/.test(text)){
-  setContext([workflow.pest||'Codling moth','Monitoring','Trap placement']);
-  msg('assistant',`<div class="answer">
-<h3>Where should I place codling moth traps?</h3>
+const API_URL='https://tfpm-api.brentshortusda.workers.dev/ask';
+const input=document.getElementById('input');
+const conversation=document.getElementById('conversation');
+const continueBtn=document.getElementById('continueBtn');
+let knownContext={};
+let pendingQuestion='';
+let pendingMissing=[];
 
-<p>Hang codling moth traps in the upper one-third of the tree canopy, toward the outside of the canopy where the trap entrance remains unobstructed.</p>
-
-<p>For the most representative catches, place traps at least several rows into the block—approximately one-quarter of the way into the orchard or farther—rather than directly on the perimeter rows.</p>
-
-<p>Traps placed closer to the orchard edge may catch moths moving into the block and can produce higher catches than traps located farther inside the orchard. When interpreting trap counts, remember that these catches may not accurately represent codling moth activity throughout the remainder of the block or farm.</p>
-
-<p>When multiple traps are used, distribute the remaining traps so they represent other areas of the block.</p>
-
-</div>${refine('Ask another placement question','Enter another question...')}`);
-  return true;
+function esc(value){return String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
+function paragraphs(text){return String(text||'').split(/\n{2,}/).filter(Boolean).map(part=>`<p>${esc(part)}</p>`).join('')}
+function addMessage(role,html){const article=document.createElement('article');article.className='message '+role;article.innerHTML=`<div class="label">${role==='user'?'You':'TFPM'}</div><div class="body">${html}</div>`;conversation.appendChild(article);article.scrollIntoView({behavior:'smooth',block:'nearest'});return article}
+function followupBox(label,placeholder){return `<form class="refine"><label>${esc(label)}</label><div class="row"><input autocomplete="off" placeholder="${esc(placeholder)}"><button class="primary" type="submit">Continue</button></div></form>`}
+function wireFollowup(article){const form=article.querySelector('.refine');if(!form)return;form.onsubmit=e=>{e.preventDefault();const value=form.querySelector('input').value.trim();if(value)handleEntry(value,true)}}
+function diagnostics(data){const records=(data.retrieved_record_ids||[]).join(', ')||'None';const missing=(data.missing_context||[]).join(', ')||'None';return `<details class="diagnostics"><summary>Developer details</summary><dl><dt>Status</dt><dd>${esc(data.status||'unknown')}</dd><dt>Target</dt><dd>${esc(data.detected?.target||knownContext.target||'Not detected')}</dd><dt>Domain</dt><dd>${esc(data.detected?.domain||'Not detected')}</dd><dt>Records</dt><dd>${esc(records)}</dd><dt>Missing</dt><dd>${esc(missing)}</dd><dt>Confidence</dt><dd>${esc(data.confidence||'Not reported')}</dd></dl></details>`}
+function parseContextReply(value){const normalized=value.toLowerCase().replace(/\bcm\b/g,'codling moth');
+  if(pendingMissing.includes('target')||(!knownContext.target&&/codling moth/.test(normalized)))knownContext.target='codling moth';
+  const acres=normalized.match(/(\d+(?:\.\d+)?)\s*(?:acre|acres|ac)\b/);if(acres)knownContext.acreage=Number(acres[1]);
+  const blocks=normalized.match(/(\d+)\s*(?:block|blocks)\b/);if(blocks)knownContext.number_of_blocks=Number(blocks[1]);
 }
-return false;
+async function askWorker(question){continueBtn.disabled=true;continueBtn.textContent='Thinking…';
+  try{
+    const response=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question,context:knownContext})});
+    const data=await response.json();
+    if(!response.ok)throw new Error(data.error||`Request failed (${response.status})`);
+    if(data.status==='needs_clarification'){
+      pendingQuestion=question;
+      pendingMissing=data.missing_context||[];
+      if(!knownContext.target&&/which pest or disease/i.test(data.clarification||''))pendingMissing=['target',...pendingMissing];
+      const article=addMessage('assistant',`<p><strong>${esc(data.clarification||'Please provide more detail.')}</strong></p>${followupBox('Add the needed detail','Enter your answer...')}${diagnostics(data)}`);wireFollowup(article);return;
+    }
+    pendingQuestion='';pendingMissing=[];
+    const answer=data.answer||'I do not yet have enough verified information to answer that confidently.';
+    addMessage('assistant',`<div class="answer">${paragraphs(answer)}</div>${diagnostics(data)}`);
+  }catch(error){
+    addMessage('assistant',`<p>I could not reach the TFPM knowledge service. Please try again.</p><p class="status">${esc(error.message)}</p>`);
+  }finally{continueBtn.disabled=false;continueBtn.textContent='Continue'}
 }
-function process(value){msg('user',`<p>${esc(value)}</p>`);input.value='';const text=n(value);
-if(pending==='pest'){const pest=detectPest(text);if(!pest){askPest();return}workflow.pest=pest;if(workflow.intent==='monitoring'&&hasTrapQuantityIntent(workflow.original||'')){askTrapDetails();return}askMonitoringNeed();return}
-if(pending==='monitoring-need'){if(answerMonitoring(text))return;msg('assistant',`<p>Please choose one of the monitoring questions or enter more detail.</p>${refine('Add more detail','Enter your monitoring question...')}`);return}
-if(pending==='trap-details'){const d=parseDetails(text);if(d){showTrapResult(d);return}msg('assistant',`<p><strong>Please include the acreage.</strong></p>${refine('Provide acreage and block arrangement','Example: 31 acres over 4 blocks')}`);return}
-const intent=detectIntent(text),pest=detectPest(text);workflow={intent,pest,original:text};
-if(intent==='monitoring'){
-  if(!pest){askPest();return}
-  if(hasTrapQuantityIntent(text)){askTrapDetails();return}
-  if(answerMonitoring(text))return;
-  askMonitoringNeed();return
+async function handleEntry(value,isFollowup=false){addMessage('user',`<p>${esc(value)}</p>`);input.value='';
+  if(isFollowup&&pendingQuestion){parseContextReply(value);const unanswered=pendingMissing.filter(item=>item==='target'?!knownContext.target:item==='acreage'?!Number.isFinite(knownContext.acreage):item==='number_of_blocks'?!Number.isFinite(knownContext.number_of_blocks):false);pendingMissing=unanswered;if(!unanswered.length){await askWorker(pendingQuestion);return}}
+  await askWorker(value);
 }
-if(text==='codling moth'){workflow.pest='Codling moth';workflow.intent='monitoring';askMonitoringNeed();return}
-if(intent){msg('assistant',`<p>TFPM recognized this as a ${esc(intent.replace('-',' '))} question, but that workflow has not been added to the current prototype yet.</p>`);return}
-msg('assistant','<p>I need a little more detail about what you are trying to do.</p>'+refine('Add more detail','For example: I need monitoring traps for my farm'))}
-function reset(){conversation.innerHTML='';context=[];pending=null;workflow={intent:null,pest:null};crumb.innerHTML='';input.value='';input.focus()}
-document.getElementById('search').onsubmit=e=>{e.preventDefault();const v=input.value.trim();if(v)process(v)};document.getElementById('home').onclick=reset;reset();
+function reset(){conversation.innerHTML='';knownContext={};pendingQuestion='';pendingMissing=[];input.value='';input.focus()}
+document.getElementById('search').onsubmit=e=>{e.preventDefault();const value=input.value.trim();if(value)handleEntry(value)};
+document.getElementById('home').onclick=reset;
+reset();
 </script></body></html>
