@@ -33,7 +33,24 @@ function askMonitoringNeed(){pending='monitoring-need';setContext([workflow.pest
 function askTrapDetails(){pending='trap-details';setContext([workflow.pest||'Codling moth','Monitoring','Trap quantity']);msg('assistant',`<p><strong>How many acres are you monitoring, and are they in one continuous block or several separate blocks?</strong></p>${refine('Provide the acreage and block arrangement','Example: 31 acres over 4 blocks')}`)}
 function parseDetails(text){const acres=text.match(/(\d+(?:\.\d+)?)\s*(?:acre|acres|ac)\b/);const blocks=text.match(/(\d+)\s*(?:block|blocks)\b/);if(!acres)return null;return{acres:+acres[1],blocks:blocks?+blocks[1]:null}}
 function showTrapResult(details){pending=null;const pest=workflow.pest||'Codling moth';if(pest!=='Codling moth'){msg('assistant',`<p>TFPM recognizes the monitoring workflow for ${esc(pest)}, but the trap-density knowledge for that pest has not been added yet.</p>`);return}const byAcre=Math.ceil(details.acres/5),byBlocks=details.blocks?details.blocks*2:2,total=Math.max(byAcre,byBlocks);const blockText=details.blocks?` across ${details.blocks} blocks`:'';msg('assistant',`<div class="answer"><h3>How many codling moth traps do I need?</h3><p>For ${details.acres} acres${blockText}, a practical starting point is <strong>${total} traps</strong>: approximately one trap per five acres while maintaining at least two traps per block.</p>${trapAnswer}</div>${buttons(['Where should I place the traps?'])}${refine('Ask another question about trap quantity','Enter another question...')}`)}
-function answerMonitoring(text){if(hasTrapQuantityIntent(text)){askTrapDetails();return true}if(/where.*trap|place.*trap|hang.*trap/.test(text)){setContext([workflow.pest||'Codling moth','Monitoring','Trap placement']);msg('assistant',`<div class="answer"><h3>Where should I place the traps?</h3><p>Use the available traps in the orchard areas most useful to monitor, including locations with historically higher pest pressure. For codling moth, hang traps in the upper portion of the canopy with the opening clear.</p></div>${refine('Ask another placement question','Enter another question...')}`);return true}return false}
+function answerMonitoring(text){if(hasTrapQuantityIntent(text)){askTrapDetails();return true}if(/where.*trap|place.*trap|hang.*trap/.test(text)){
+  setContext([workflow.pest||'Codling moth','Monitoring','Trap placement']);
+  msg('assistant',`<div class="answer">
+<h3>Where should I place codling moth traps?</h3>
+
+<p>Hang codling moth traps in the upper one-third of the tree canopy, toward the outside of the canopy where the trap entrance remains unobstructed.</p>
+
+<p>For the most representative catches, place traps at least several rows into the block—approximately one-quarter of the way into the orchard or farther—rather than directly on the perimeter rows.</p>
+
+<p>Traps placed closer to the orchard edge may catch moths moving into the block and can produce higher catches than traps located farther inside the orchard. When interpreting trap counts, remember that these catches may not accurately represent codling moth activity throughout the remainder of the block or farm.</p>
+
+<p>When multiple traps are used, distribute the remaining traps so they represent other areas of the block.</p>
+
+</div>${refine('Ask another placement question','Enter another question...')}`);
+  return true;
+}
+return false;
+}
 function process(value){msg('user',`<p>${esc(value)}</p>`);input.value='';const text=n(value);
 if(pending==='pest'){const pest=detectPest(text);if(!pest){askPest();return}workflow.pest=pest;if(workflow.intent==='monitoring'&&hasTrapQuantityIntent(workflow.original||'')){askTrapDetails();return}askMonitoringNeed();return}
 if(pending==='monitoring-need'){if(answerMonitoring(text))return;msg('assistant',`<p>Please choose one of the monitoring questions or enter more detail.</p>${refine('Add more detail','Enter your monitoring question...')}`);return}
