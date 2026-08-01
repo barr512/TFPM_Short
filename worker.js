@@ -1,4 +1,6 @@
-import codlingMothMonitoring from "./knowledge/codling-moth-monitoring.json";
+import codlingMothMonitoringText from "./knowledge/codling-moth-monitoring.json";
+
+const codlingMothMonitoring = JSON.parse(codlingMothMonitoringText);
 
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
@@ -155,7 +157,8 @@ export default {
       return jsonResponse({ error: "Method not allowed" }, 405);
     } catch (error) {
       console.error("Unhandled TFPM Worker error", error);
-      return jsonResponse({ error: "Worker runtime error", detail: String(error?.message || error) }, 500);
+      const detail = String(error?.message || error);
+      return jsonResponse({ error: `Worker runtime error: ${detail}`, detail }, 500);
     }
   },
 };
