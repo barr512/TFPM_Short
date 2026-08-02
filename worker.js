@@ -51,11 +51,11 @@ function detectMatingDisruption(question, context) {
   return null;
 }
 
-function trapAndLureAnswer(usingMatingDisruption) {
+function trapAndLureAnswer(usingMatingDisruption, location) {
   if (usingMatingDisruption) {
-    return "Use a delta-style trap with a replaceable sticky liner and a lure intended for codling moth monitoring under mating disruption. CM-DA combination lures and higher-load codling moth lures are options described for disrupted orchards. A standard sex-pheromone lure may produce very low or zero catches under disruption even when codling moth is present, so do not interpret an empty standard-lure trap as proof that codling moth is absent.";
+    return `Use a delta-style trap with a replaceable sticky liner. Because the orchard uses mating disruption, lure choice must follow regional guidance; CM-DA is not automatically the best choice in every part of the country. TFPM does not yet have verified lure-selection guidance for ${location}, so it cannot responsibly choose the lure yet.`;
   }
-  return "Use a delta-style trap with a replaceable sticky liner and a standard codling moth sex-pheromone lure. This is appropriate when the orchard is not using mating disruption. Replace the lure according to the field life listed for that exact product and loading; lure replacement intervals are not interchangeable.";
+  return "Use a delta-style trap with a replaceable sticky liner. Two common lure choices are CM 1X, which has a four-week field life, and CM L2, which has an eight-week field life. Choose between them based on the desired service interval, and record the installation and replacement dates.";
 }
 
 function scoreRecord(record, tokens, normalizedQuestion) {
@@ -147,12 +147,21 @@ async function answerQuestion(question, context, env) {
         retrieved_record_ids: ["cm.monitoring.trap-type", "cm.monitoring.mating-disruption"]
       });
     }
+    if (usingMatingDisruption && !String(context?.location || "").trim()) {
+      return jsonResponse({
+        status: "needs_clarification",
+        clarification: "What state or region is the orchard in?",
+        missing_context: ["location"],
+        detected: { target, domain: "monitoring" },
+        retrieved_record_ids: ["cm.monitoring.trap-type", "cm.monitoring.mating-disruption"]
+      });
+    }
     return jsonResponse({
       status: "answered",
-      answer: trapAndLureAnswer(usingMatingDisruption),
+      answer: trapAndLureAnswer(usingMatingDisruption, String(context?.location || "").trim()),
       detected: { target, domain: "monitoring" },
       retrieved_record_ids: ["cm.monitoring.trap-type", "cm.monitoring.mating-disruption", "cm.monitoring.lure-maintenance"],
-      confidence: "high"
+      confidence: usingMatingDisruption ? "limited-regional-knowledge" : "high"
     });
   }
 
