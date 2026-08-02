@@ -117,10 +117,9 @@
         "number of traps"
       ],
       "facts": [
-        "A commonly used commercial-orchard guideline is at least one codling moth trap per five acres, with no fewer than two traps per orchard block.",
-        "Using that guideline, a single commercial orchard block of five acres or less is monitored with two traps rather than one.",
-        "Two traps per block are typically sufficient for codling moth detection in blocks of five acres or less.",
-        "Trap number is determined by orchard block rather than treating an entire farm as one monitoring unit.",
+        "A commonly used commercial-orchard monitoring guideline is one codling moth trap for every five acres, with a minimum of two traps in each orchard block.",
+        "For any orchard block of five acres or less, the two-trap minimum means that the guideline works out to two traps for that block.",
+        "Trap count is calculated separately for each orchard block rather than from the farm's total acreage.",
         "Some monitoring programs use different trap densities when catches are being tied to treatment decisions, so the monitoring objective can change how trap numbers are interpreted.",
         "Block layout and the purpose of monitoring affect how useful the resulting trap catches will be."
       ],
