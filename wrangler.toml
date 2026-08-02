@@ -5,7 +5,3 @@ compatibility_date = "2026-07-31"
 [ai]
 binding = "AI"
 
-[[rules]]
-type = "Text"
-globs = ["**/*.json"]
-fallthrough = true
