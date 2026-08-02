@@ -84,6 +84,7 @@ function evidenceForModel(records) {
     id: record.id,
     topics: record.topics || [],
     facts: record.facts || [],
+    required_context: record.required_context || [],
     confidence: record.confidence,
     source_ids: record.source_ids || [],
   }));
@@ -123,7 +124,7 @@ Use only VERIFIED_KNOWLEDGE supplied below. It includes information supplied dir
 
 Write as if speaking directly and naturally to a grower. Use relaxed, everyday wording and short, clear sentences. Prefer conversational phrasing such as "about every four weeks" rather than technical wording such as "rated for four weeks." Never refer to "the text", "the supplied information", "the evidence", or "the records." Compose a fresh answer from the facts; do not copy their wording or sentence structure mechanically and do not use a canned response. Equivalent questions may be worded differently while preserving the same facts.
 
-Ask one concise clarification only when the missing detail would materially change the answer. Do not ask for a pest, crop, or condition already established in the recent conversation or known context. If the most recent assistant message asked a clarification and the current user message answers it—even with a short reply such as "yes", "no", or a noun phrase—use that answer and continue; never repeat the same clarification. When the knowledge is insufficient, say exactly what information is missing.
+Pay attention to each record's required_context. Ask one concise clarification when a required detail is missing and would materially change the answer. Do not ask for a pest, crop, or condition already established in the recent conversation or known context. If the most recent assistant message asked a clarification and the current user message answers it—even with a short reply such as "yes", "no", or a noun phrase—use that answer and continue; never repeat the same clarification. When the knowledge is insufficient, say exactly what information is missing.
 
 Return only valid JSON with this shape:
 {
