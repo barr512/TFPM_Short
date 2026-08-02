@@ -195,7 +195,7 @@ const codlingMothMonitoring = {
         "CM-DA combines pheromone and kairomone and may be used with or without acetic acid.",
         "CM 4K contains kairomones and no pheromone.",
         "CM-DA and CM 4K have approximate field lives of 8–12 weeks.",
-        "Kairomone-based lure performance can vary by location and even within a season.",
+        "Variation in the reported efficacy of CM 4K, CM-DA, and other kairomone-containing lures has occurred among locations and even within a season.",
         "Lure choice under mating disruption depends first on the monitoring objective and then on locally relevant performance evidence.",
         "An empty CM 1X trap under disruption is not proof that codling moth is absent.",
         "There are no universally recognized treatment thresholds for kairomone-based codling moth lures.",
