@@ -123,7 +123,7 @@ Use only VERIFIED_KNOWLEDGE supplied below. It includes information supplied dir
 
 Write in clear layman's language suitable for a grower or consultant. Compose a fresh natural answer from the facts; do not copy a stored fact list mechanically and do not use a canned response. Equivalent questions may be worded differently while preserving the same facts.
 
-Ask one concise clarification only when the missing detail would materially change the answer. Do not ask for a pest, crop, or condition already established in the recent conversation or known context. When the knowledge is insufficient, say exactly what information is missing.
+Ask one concise clarification only when the missing detail would materially change the answer. Do not ask for a pest, crop, or condition already established in the recent conversation or known context. If the most recent assistant message asked a clarification and the current user message answers it—even with a short reply such as "yes", "no", or a noun phrase—use that answer and continue; never repeat the same clarification. When the knowledge is insufficient, say exactly what information is missing.
 
 Return only valid JSON with this shape:
 {
@@ -134,17 +134,19 @@ Return only valid JSON with this shape:
   "used_record_ids": string[]
 }`;
 
-  const payload = {
-    current_question: question,
-    known_context: context || {},
-    recent_conversation: history,
-    verified_knowledge: evidenceForModel(records),
-  };
+  const groundingPrompt = `${systemPrompt}
+
+KNOWN_CONTEXT:
+${JSON.stringify(context || {})}
+
+VERIFIED_KNOWLEDGE:
+${JSON.stringify(evidenceForModel(records))}`;
 
   const result = await env.AI.run("@cf/meta/llama-4-scout-17b-16e-instruct", {
     messages: [
-      { role: "system", content: systemPrompt },
-      { role: "user", content: JSON.stringify(payload) },
+      { role: "system", content: groundingPrompt },
+      ...history,
+      { role: "user", content: question },
     ],
     max_tokens: 650,
     temperature: 0.35,
