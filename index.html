@@ -40,6 +40,11 @@ function parseContextReply(value){const normalized=value.toLowerCase().replace(/
     if(/suppression|suppressing|near zero|check.*disruption|verify.*disruption|is.*working/.test(normalized))knownContext.monitoring_goal='suppression';
     if(/activity|flight|detect|catch.*despite|monitor.*despite|moths.*present/.test(normalized))knownContext.monitoring_goal='activity';
   }
+  if(pendingMissing.includes('trap_component')){
+    if(/trap body|trap itself|delta trap|body|shell/.test(normalized))knownContext.trap_component='body';
+    if(/sticky liner|liner|sticky card|glue/.test(normalized))knownContext.trap_component='liner';
+    if(/lure|bait/.test(normalized))knownContext.trap_component='lure';
+  }
   const acres=normalized.match(/(\d+(?:\.\d+)?)\s*(?:acre|acres|ac)\b/);if(acres)knownContext.acreage=Number(acres[1]);
   const blocks=normalized.match(/(\d+)\s*(?:block|blocks)\b/);if(blocks)knownContext.number_of_blocks=Number(blocks[1]);
 }
@@ -59,6 +64,7 @@ async function askWorker(question){continueBtn.disabled=true;continueBtn.textCon
       const article=addMessage('assistant',`<p><strong>${esc(data.clarification||'Please provide more detail.')}</strong></p>${followupBox('Add the needed detail','Enter your answer...')}${diagnostics(data)}`);wireFollowup(article);return;
     }
     pendingQuestion='';pendingMissing=[];
+    if(knownContext.trap_component)delete knownContext.trap_component;
     const answer=data.answer||'I do not yet have enough verified information to answer that confidently.';
     const article=addMessage('assistant',`<div class="answer">${paragraphs(answer)}</div>${diagnostics(data)}${nextQuestionBox()}`);wireNextQuestion(article);
   }catch(error){
@@ -66,7 +72,7 @@ async function askWorker(question){continueBtn.disabled=true;continueBtn.textCon
   }finally{continueBtn.disabled=false;continueBtn.textContent='Continue'}
 }
 async function handleEntry(value,isFollowup=false){document.querySelectorAll('.next-question').forEach(form=>form.remove());addMessage('user',`<p>${esc(value)}</p>`);input.value='';
-  if(isFollowup&&pendingQuestion){parseContextReply(value);const unanswered=pendingMissing.filter(item=>item==='target'?!knownContext.target:item==='mating_disruption'?typeof knownContext.mating_disruption!=='boolean':item==='location'?!knownContext.location:item==='monitoring_goal'?!knownContext.monitoring_goal:item==='acreage'?!Number.isFinite(knownContext.acreage):item==='number_of_blocks'?!Number.isFinite(knownContext.number_of_blocks):false);pendingMissing=unanswered;if(!unanswered.length){await askWorker(pendingQuestion);return}}
+  if(isFollowup&&pendingQuestion){parseContextReply(value);const unanswered=pendingMissing.filter(item=>item==='target'?!knownContext.target:item==='mating_disruption'?typeof knownContext.mating_disruption!=='boolean':item==='location'?!knownContext.location:item==='monitoring_goal'?!knownContext.monitoring_goal:item==='trap_component'?!knownContext.trap_component:item==='acreage'?!Number.isFinite(knownContext.acreage):item==='number_of_blocks'?!Number.isFinite(knownContext.number_of_blocks):false);pendingMissing=unanswered;if(!unanswered.length){await askWorker(pendingQuestion);return}}
   await askWorker(value);
 }
 function reset(){conversation.innerHTML='';knownContext={};pendingQuestion='';pendingMissing=[];input.value='';input.focus()}
