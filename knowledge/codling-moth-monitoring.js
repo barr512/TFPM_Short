@@ -163,7 +163,8 @@ const codlingMothMonitoring = {
       ],
       "facts": [
         "Replace the lure according to the field life specified for that exact lure; replacement intervals are not interchangeable among all products or loadings.",
-        "Sticky liners are generally rated for four weeks, but should be replaced sooner when captured insects, debris, or contamination interferes with capture.",
+        "Typical sticky-liner service interval: about four weeks.",
+        "Replace a sticky liner sooner when captured insects, debris, or contamination begins to interfere with capture.",
         "Record lure installation and replacement dates rather than judging lure life by appearance."
       ],
       "confidence": "high",
