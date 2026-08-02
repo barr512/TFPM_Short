@@ -1,6 +1,4 @@
-import codlingMothMonitoringText from "./knowledge/codling-moth-monitoring.json";
-
-const codlingMothMonitoring = JSON.parse(codlingMothMonitoringText);
+import codlingMothMonitoring from "./knowledge/codling-moth-monitoring.js";
 
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
