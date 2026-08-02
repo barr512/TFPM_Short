@@ -91,7 +91,9 @@ function evidenceForModel(records) {
 
 function modelText(result) {
   if (typeof result === "string") return result.trim();
+  if (result?.response && typeof result.response === "object") return JSON.stringify(result.response);
   if (result?.response) return String(result.response).trim();
+  if (result?.result?.response && typeof result.result.response === "object") return JSON.stringify(result.result.response);
   if (result?.result?.response) return String(result.result.response).trim();
   return "";
 }
@@ -126,9 +128,9 @@ Ask one concise clarification only when the missing detail would materially chan
 Return only valid JSON with this shape:
 {
   "status": "answered" | "needs_clarification" | "insufficient_knowledge",
-  "answer": string | null,
-  "clarification": string | null,
-  "detected": { "target": string | null, "domain": string | null },
+  "answer": string (use an empty string when not applicable),
+  "clarification": string (use an empty string when not applicable),
+  "detected": { "target": string, "domain": string },
   "used_record_ids": string[]
 }`;
 
@@ -146,6 +148,27 @@ Return only valid JSON with this shape:
     ],
     max_tokens: 650,
     temperature: 0.35,
+    guided_json: {
+      type: "object",
+      properties: {
+        status: { type: "string", enum: ["answered", "needs_clarification", "insufficient_knowledge"] },
+        answer: { type: "string" },
+        clarification: { type: "string" },
+        detected: {
+          type: "object",
+          properties: {
+            target: { type: "string" },
+            domain: { type: "string" }
+          },
+          required: ["target", "domain"]
+        },
+        used_record_ids: {
+          type: "array",
+          items: { type: "string" }
+        }
+      },
+      required: ["status", "answer", "clarification", "detected", "used_record_ids"]
+    }
   });
 
   const parsed = parseModelJson(modelText(result));
