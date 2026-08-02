@@ -117,21 +117,25 @@
         "number of traps"
       ],
       "facts": [
-        "A common starting density is approximately one codling moth trap per five acres.",
-        "Trap number should be considered by block rather than treating an entire farm as one monitoring unit.",
-        "The practical number balances acreage, the value of additional local information, the cost of traps and lures, and the time required to service them.",
-        "Where traps are placed can be more important than automatically adding traps; growers often concentrate traps in areas with historically higher pressure.",
-        "Published regional guidance differs on minimum trap numbers, so TFPM should preserve the source context instead of presenting every minimum as universal."
+        "Penn State guidance calls for at least one codling moth trap per five acres and no fewer than two traps per orchard block.",
+        "Under the Penn State recommendation, one five-acre commercial orchard block uses two traps, not one.",
+        "Purdue guidance says two traps per block are typically sufficient for codling moth detection in blocks of five acres or less.",
+        "Trap number should be considered by orchard block rather than treating an entire farm as one monitoring unit.",
+        "Published recommendations vary by region and monitoring objective; some programs use one trap per 10 acres, while intensive treatment-decision programs may use one trap per 2.5 acres.",
+        "Where traps are placed and what the grower wants to learn from them affect how useful the trap catches will be."
       ],
       "required_context": [
         "acreage",
-        "number_of_blocks"
+        "number_of_blocks",
+        "location"
       ],
-      "confidence": "moderate",
+      "confidence": "high-with-regional-variation",
       "source_ids": [
         "vt-cm",
         "cornell-ipm-2025",
-        "user-field-review"
+        "user-field-review",
+        "penn-state-cm-2026",
+        "purdue-cm-traps-2024"
       ]
     },
     {
