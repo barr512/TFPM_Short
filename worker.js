@@ -49,12 +49,11 @@ function asksAboutTrapLifespan(question) {
 }
 
 function trapComponentAnswer(component) {
-  if (component === "body") {
-    return "The delta trap body is reusable. Continue using it while it remains structurally sound, closes properly, and keeps the trap entrance unobstructed; replace it when damage prevents it from functioning correctly.";
-  }
-  if (component === "liner") {
-    return "Sticky liners are generally rated for four weeks, but should be replaced sooner when captured insects, debris, or contamination interferes with capture.";
-  }
+  const bodyAnswer = "The delta trap body is reusable. Continue using it while it remains structurally sound, closes properly, and keeps the trap entrance unobstructed; replace it when damage prevents it from functioning correctly.";
+  const linerAnswer = "Sticky liners are generally rated for four weeks, but should be replaced sooner when captured insects, debris, or contamination interferes with capture.";
+  if (component === "body_and_liner") return `${bodyAnswer} ${linerAnswer}`;
+  if (component === "body") return bodyAnswer;
+  if (component === "liner") return linerAnswer;
   return null;
 }
 
@@ -171,7 +170,7 @@ async function answerQuestion(question, context, env) {
       retrieved_record_ids: ["cm.monitoring.trap-type", "cm.monitoring.lure-maintenance"]
     });
   }
-  if (asksAboutTrapLifespan(question) && ["body", "liner"].includes(context?.trap_component)) {
+  if (asksAboutTrapLifespan(question) && ["body", "liner", "body_and_liner"].includes(context?.trap_component)) {
     return jsonResponse({
       status: "answered",
       answer: trapComponentAnswer(context.trap_component),
