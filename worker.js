@@ -38,6 +38,26 @@ function detectTarget(question) {
   return normalize(question).includes("codling moth") ? "codling moth" : null;
 }
 
+function asksAboutTrapOrLure(question) {
+  const normalizedQuestion = normalize(question);
+  return /\blure\b|which trap|what trap|trap.*\buse\b|type of trap/.test(normalizedQuestion);
+}
+
+function detectMatingDisruption(question, context) {
+  if (typeof context?.mating_disruption === "boolean") return context.mating_disruption;
+  const normalizedQuestion = normalize(question);
+  if (/\b(no|not|without)\s+(mating\s+)?disruption\b|not disrupted/.test(normalizedQuestion)) return false;
+  if (/mating disruption|disrupted orchard|under disruption|using disruption/.test(normalizedQuestion)) return true;
+  return null;
+}
+
+function trapAndLureAnswer(usingMatingDisruption) {
+  if (usingMatingDisruption) {
+    return "Use a delta-style trap with a replaceable sticky liner and a lure intended for codling moth monitoring under mating disruption. CM-DA combination lures and higher-load codling moth lures are options described for disrupted orchards. A standard sex-pheromone lure may produce very low or zero catches under disruption even when codling moth is present, so do not interpret an empty standard-lure trap as proof that codling moth is absent.";
+  }
+  return "Use a delta-style trap with a replaceable sticky liner and a standard codling moth sex-pheromone lure. This is appropriate when the orchard is not using mating disruption. Replace the lure according to the field life listed for that exact product and loading; lure replacement intervals are not interchangeable.";
+}
+
 function scoreRecord(record, tokens, normalizedQuestion) {
   const searchable = normalize([record.id, ...(record.topics || []), ...(record.facts || [])].join(" "));
   let score = 0;
@@ -115,6 +135,26 @@ async function answerQuestion(question, context, env) {
   const target = detectTarget(question) || context?.target || null;
   if (!target) return jsonResponse({ status: "needs_clarification", clarification: "Which pest or disease is this question about?" });
   if (target !== "codling moth") return jsonResponse({ status: "insufficient_knowledge", answer: `The current test knowledge library does not yet include ${target}.` });
+
+  if (asksAboutTrapOrLure(question)) {
+    const usingMatingDisruption = detectMatingDisruption(question, context);
+    if (usingMatingDisruption === null) {
+      return jsonResponse({
+        status: "needs_clarification",
+        clarification: "Are you using mating disruption in this orchard?",
+        missing_context: ["mating_disruption"],
+        detected: { target, domain: "monitoring" },
+        retrieved_record_ids: ["cm.monitoring.trap-type", "cm.monitoring.mating-disruption"]
+      });
+    }
+    return jsonResponse({
+      status: "answered",
+      answer: trapAndLureAnswer(usingMatingDisruption),
+      detected: { target, domain: "monitoring" },
+      retrieved_record_ids: ["cm.monitoring.trap-type", "cm.monitoring.mating-disruption", "cm.monitoring.lure-maintenance"],
+      confidence: "high"
+    });
+  }
 
   const records = retrieveRecords(question);
   if (!records.length) return jsonResponse({ status: "insufficient_knowledge", answer: "I do not yet have enough verified codling moth monitoring information to answer that question confidently.", detected: { target, domain: "monitoring" } });
