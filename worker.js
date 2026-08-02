@@ -43,6 +43,21 @@ function asksAboutTrapOrLure(question) {
   return /\blure\b|which trap|what trap|trap.*\buse\b|type of trap|cm 4k|cm 10x|cm da|cmda/.test(normalizedQuestion);
 }
 
+function asksAboutTrapLifespan(question) {
+  const normalizedQuestion = normalize(question);
+  return /how long.*trap|trap.*how long|trap.*last|life.*trap/.test(normalizedQuestion);
+}
+
+function trapComponentAnswer(component) {
+  if (component === "body") {
+    return "The delta trap body is reusable. Continue using it while it remains structurally sound, closes properly, and keeps the trap entrance unobstructed; replace it when damage prevents it from functioning correctly.";
+  }
+  if (component === "liner") {
+    return "The sticky liner does not have one fixed replacement interval. Replace it when captured insects, debris, contamination, or loss of stickiness begins to interfere with capture.";
+  }
+  return null;
+}
+
 function detectMatingDisruption(question, context) {
   if (typeof context?.mating_disruption === "boolean") return context.mating_disruption;
   const normalizedQuestion = normalize(question);
@@ -147,7 +162,26 @@ async function answerQuestion(question, context, env) {
   if (!target) return jsonResponse({ status: "needs_clarification", clarification: "Which pest or disease is this question about?" });
   if (target !== "codling moth") return jsonResponse({ status: "insufficient_knowledge", answer: `The current test knowledge library does not yet include ${target}.` });
 
-  if (asksAboutTrapOrLure(question)) {
+  if (asksAboutTrapLifespan(question) && !context?.trap_component) {
+    return jsonResponse({
+      status: "needs_clarification",
+      clarification: "Do you mean the reusable delta trap body, the sticky liner, or the lure?",
+      missing_context: ["trap_component"],
+      detected: { target, domain: "monitoring" },
+      retrieved_record_ids: ["cm.monitoring.trap-type", "cm.monitoring.lure-maintenance"]
+    });
+  }
+  if (asksAboutTrapLifespan(question) && ["body", "liner"].includes(context?.trap_component)) {
+    return jsonResponse({
+      status: "answered",
+      answer: trapComponentAnswer(context.trap_component),
+      detected: { target, domain: "monitoring" },
+      retrieved_record_ids: ["cm.monitoring.trap-type", "cm.monitoring.lure-maintenance"],
+      confidence: "high"
+    });
+  }
+
+  if (asksAboutTrapOrLure(question) || context?.trap_component === "lure") {
     const usingMatingDisruption = detectMatingDisruption(question, context);
     if (usingMatingDisruption === null) {
       return jsonResponse({
