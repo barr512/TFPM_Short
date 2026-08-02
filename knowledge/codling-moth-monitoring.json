@@ -178,13 +178,26 @@
         "mating disruption monitoring",
         "MD monitoring",
         "CM-DA lure",
-        "10X lure"
+        "10X lure",
+        "CM 1X under disruption",
+        "CM 10X lure",
+        "acetic acid co-lure",
+        "CM 4K lure",
+        "kairomone lure",
+        "monitor disruption efficacy",
+        "monitor activity under disruption"
       ],
       "facts": [
         "Mating disruption can suppress catches in standard sex-pheromone traps even when codling moth is present.",
-        "Lure choice in a mating-disrupted orchard depends on regional guidance.",
-        "CM-DA may be appropriate in some regions but should not be presented as the universally preferred lure throughout the country.",
-        "An empty standard pheromone trap in a disrupted orchard is not proof that codling moth is absent."
+        "If the monitoring objective is to evaluate suppression of standard pheromone response, CM 1X may be used and would be expected to remain near zero under mating disruption.",
+        "If the objective is to monitor codling moth activity despite disruption, CM 10X is a higher-load pheromone option and is not expected to remain near zero.",
+        "CM 10X has an approximate field life of two weeks.",
+        "CM-DA combines pheromone and kairomone and may be used with or without acetic acid.",
+        "CM 4K contains kairomones and no pheromone.",
+        "CM-DA and CM 4K have approximate field lives of 8–12 weeks.",
+        "Kairomone-based lure performance can vary by location and even within a season.",
+        "Lure choice under mating disruption depends first on the monitoring objective and then on locally relevant performance evidence.",
+        "An empty CM 1X trap under disruption is not proof that codling moth is absent."
       ],
       "confidence": "high",
       "source_ids": [
