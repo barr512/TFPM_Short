@@ -41,9 +41,13 @@ function parseContextReply(value){const normalized=value.toLowerCase().replace(/
     if(/activity|flight|detect|catch.*despite|monitor.*despite|moths.*present/.test(normalized))knownContext.monitoring_goal='activity';
   }
   if(pendingMissing.includes('trap_component')){
-    if(/trap body|trap itself|delta trap|body|shell/.test(normalized))knownContext.trap_component='body';
-    if(/sticky liner|liner|sticky card|glue/.test(normalized))knownContext.trap_component='liner';
-    if(/lure|bait/.test(normalized))knownContext.trap_component='lure';
+    const wantsBody=/trap body|trap itself|delta trap|body|shell/.test(normalized);
+    const wantsLiner=/sticky liner|liner|sticky card|glue/.test(normalized);
+    const wantsLure=/lure|bait/.test(normalized);
+    if(wantsBody&&wantsLiner&&!wantsLure)knownContext.trap_component='body_and_liner';
+    else if(wantsBody&&!wantsLiner&&!wantsLure)knownContext.trap_component='body';
+    else if(wantsLiner&&!wantsBody&&!wantsLure)knownContext.trap_component='liner';
+    else if(wantsLure&&!wantsBody&&!wantsLiner)knownContext.trap_component='lure';
   }
   const acres=normalized.match(/(\d+(?:\.\d+)?)\s*(?:acre|acres|ac)\b/);if(acres)knownContext.acreage=Number(acres[1]);
   const blocks=normalized.match(/(\d+)\s*(?:block|blocks)\b/);if(blocks)knownContext.number_of_blocks=Number(blocks[1]);
