@@ -139,7 +139,7 @@ Return only valid JSON with this shape:
     verified_knowledge: evidenceForModel(records),
   };
 
-  const result = await env.AI.run("@cf/meta/llama-3.1-8b-instruct", {
+  const result = await env.AI.run("@cf/meta/llama-4-scout-17b-16e-instruct", {
     messages: [
       { role: "system", content: systemPrompt },
       { role: "user", content: JSON.stringify(payload) },
