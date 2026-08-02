@@ -1,3 +1,4 @@
+// Deployment trigger: Git connection restored 2026-08-02.
 import codlingMothMonitoring from "./knowledge/codling-moth-monitoring.js";
 
 const CORS_HEADERS = {
