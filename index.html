@@ -25,7 +25,9 @@ function esc(value){return String(value).replaceAll('&','&amp;').replaceAll('<',
 function paragraphs(text){return String(text||'').split(/\n{2,}/).filter(Boolean).map(part=>`<p>${esc(part)}</p>`).join('')}
 function addMessage(role,html){const article=document.createElement('article');article.className='message '+role;article.innerHTML=`<div class="label">${role==='user'?'You':'TFPM'}</div><div class="body">${html}</div>`;conversation.appendChild(article);article.scrollIntoView({behavior:'smooth',block:'nearest'});return article}
 function followupBox(label,placeholder){return `<form class="refine"><label>${esc(label)}</label><div class="row"><input autocomplete="off" placeholder="${esc(placeholder)}"><button class="primary" type="submit">Continue</button></div></form>`}
+function nextQuestionBox(){return `<form class="refine next-question"><label>Do you have another question?</label><div class="row"><input autocomplete="off" placeholder="Enter your next question..."><button class="primary" type="submit">Ask TFPM</button></div></form>`}
 function wireFollowup(article){const form=article.querySelector('.refine');if(!form)return;form.onsubmit=e=>{e.preventDefault();const value=form.querySelector('input').value.trim();if(value)handleEntry(value,true)}}
+function wireNextQuestion(article){const form=article.querySelector('.next-question');if(!form)return;form.onsubmit=e=>{e.preventDefault();const value=form.querySelector('input').value.trim();if(value)handleEntry(value)}}
 function diagnostics(data){const records=(data.retrieved_record_ids||[]).join(', ')||'None';const missing=(data.missing_context||[]).join(', ')||'None';return `<details class="diagnostics"><summary>Developer details</summary><dl><dt>Status</dt><dd>${esc(data.status||'unknown')}</dd><dt>Target</dt><dd>${esc(data.detected?.target||knownContext.target||'Not detected')}</dd><dt>Domain</dt><dd>${esc(data.detected?.domain||'Not detected')}</dd><dt>Records</dt><dd>${esc(records)}</dd><dt>Missing</dt><dd>${esc(missing)}</dd><dt>Confidence</dt><dd>${esc(data.confidence||'Not reported')}</dd></dl></details>`}
 function parseContextReply(value){const normalized=value.toLowerCase().replace(/\bcm\b/g,'codling moth');
   if(pendingMissing.includes('target')||(!knownContext.target&&/codling moth/.test(normalized)))knownContext.target='codling moth';
@@ -47,12 +49,12 @@ async function askWorker(question){continueBtn.disabled=true;continueBtn.textCon
     }
     pendingQuestion='';pendingMissing=[];
     const answer=data.answer||'I do not yet have enough verified information to answer that confidently.';
-    addMessage('assistant',`<div class="answer">${paragraphs(answer)}</div>${diagnostics(data)}`);
+    const article=addMessage('assistant',`<div class="answer">${paragraphs(answer)}</div>${diagnostics(data)}${nextQuestionBox()}`);wireNextQuestion(article);
   }catch(error){
     addMessage('assistant',`<p>I could not reach the TFPM knowledge service. Please try again.</p><p class="status">${esc(error.message)}</p>`);
   }finally{continueBtn.disabled=false;continueBtn.textContent='Continue'}
 }
-async function handleEntry(value,isFollowup=false){addMessage('user',`<p>${esc(value)}</p>`);input.value='';
+async function handleEntry(value,isFollowup=false){document.querySelectorAll('.next-question').forEach(form=>form.remove());addMessage('user',`<p>${esc(value)}</p>`);input.value='';
   if(isFollowup&&pendingQuestion){parseContextReply(value);const unanswered=pendingMissing.filter(item=>item==='target'?!knownContext.target:item==='acreage'?!Number.isFinite(knownContext.acreage):item==='number_of_blocks'?!Number.isFinite(knownContext.number_of_blocks):false);pendingMissing=unanswered;if(!unanswered.length){await askWorker(pendingQuestion);return}}
   await askWorker(value);
 }
