@@ -66,7 +66,11 @@ function retrieveRecords(question, limit = 5) {
     .map((item) => item.record);
 }
 
-function findMissingContext(records, context) {
+function findMissingContext(records, context, question) {
+  const normalizedQuestion = normalize(question);
+  const asksForTrapQuantity = /how many|number of traps|trap density|traps? per acre|trap count/.test(normalizedQuestion);
+  if (!asksForTrapQuantity) return [];
+
   const required = new Set(records.flatMap((record) => record.required_context || []));
   const missing = [];
   if (required.has("acreage") && !Number.isFinite(context?.acreage)) missing.push("acreage");
@@ -115,7 +119,7 @@ async function answerQuestion(question, context, env) {
   const records = retrieveRecords(question);
   if (!records.length) return jsonResponse({ status: "insufficient_knowledge", answer: "I do not yet have enough verified codling moth monitoring information to answer that question confidently.", detected: { target, domain: "monitoring" } });
 
-  const missing = findMissingContext(records, context);
+  const missing = findMissingContext(records, context, question);
   if (missing.length) return jsonResponse({ status: "needs_clarification", clarification: clarificationFor(missing), missing_context: missing, detected: { target, domain: "monitoring" }, retrieved_record_ids: records.map((record) => record.id) });
 
   let answer = null;
