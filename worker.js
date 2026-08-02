@@ -53,7 +53,7 @@ function trapComponentAnswer(component) {
     return "The delta trap body is reusable. Continue using it while it remains structurally sound, closes properly, and keeps the trap entrance unobstructed; replace it when damage prevents it from functioning correctly.";
   }
   if (component === "liner") {
-    return "The sticky liner does not have one fixed replacement interval. Replace it when captured insects, debris, contamination, or loss of stickiness begins to interfere with capture.";
+    return "Sticky liners are generally rated for four weeks, but should be replaced sooner when captured insects, debris, or contamination interferes with capture.";
   }
   return null;
 }
