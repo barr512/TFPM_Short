@@ -13,74 +13,28 @@
 <section id="conversation" class="conversation" aria-live="polite"></section>
 </main>
 <script>
-const API_URL='https://tfpm-api.brentshortusda.workers.dev/ask';
-const input=document.getElementById('input');
-const conversation=document.getElementById('conversation');
-const continueBtn=document.getElementById('continueBtn');
-let knownContext={};
-let pendingQuestion='';
-let pendingMissing=[];
-
-function esc(value){return String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
-function paragraphs(text){return String(text||'').split(/\n{2,}/).filter(Boolean).map(part=>`<p>${esc(part)}</p>`).join('')}
-function addMessage(role,html){const article=document.createElement('article');article.className='message '+role;article.innerHTML=`<div class="label">${role==='user'?'You':'TFPM'}</div><div class="body">${html}</div>`;conversation.appendChild(article);article.scrollIntoView({behavior:'smooth',block:'nearest'});return article}
-function followupBox(label,placeholder){return `<form class="refine"><label>${esc(label)}</label><div class="row"><input autocomplete="off" placeholder="${esc(placeholder)}"><button class="primary" type="submit">Continue</button></div></form>`}
-function nextQuestionBox(){return `<form class="refine next-question"><label>Do you have another question?</label><div class="row"><input autocomplete="off" placeholder="Enter your next question..."><button class="primary" type="submit">Ask TFPM</button></div></form>`}
-function wireFollowup(article){const form=article.querySelector('.refine');if(!form)return;form.onsubmit=e=>{e.preventDefault();const value=form.querySelector('input').value.trim();if(value)handleEntry(value,true)}}
-function wireNextQuestion(article){const form=article.querySelector('.next-question');if(!form)return;form.onsubmit=e=>{e.preventDefault();const value=form.querySelector('input').value.trim();if(value)handleEntry(value)}}
-function diagnostics(data){const records=(data.retrieved_record_ids||[]).join(', ')||'None';const missing=(data.missing_context||[]).join(', ')||'None';return `<details class="diagnostics"><summary>Developer details</summary><dl><dt>Status</dt><dd>${esc(data.status||'unknown')}</dd><dt>Target</dt><dd>${esc(data.detected?.target||knownContext.target||'Not detected')}</dd><dt>Domain</dt><dd>${esc(data.detected?.domain||'Not detected')}</dd><dt>Records</dt><dd>${esc(records)}</dd><dt>Missing</dt><dd>${esc(missing)}</dd><dt>Confidence</dt><dd>${esc(data.confidence||'Not reported')}</dd></dl></details>`}
-function parseContextReply(value){const normalized=value.toLowerCase().replace(/\bcm\b/g,'codling moth');
-  if(pendingMissing.includes('target')||(!knownContext.target&&/codling moth/.test(normalized)))knownContext.target='codling moth';
-  if(pendingMissing.includes('mating_disruption')){
-    if(/^(yes|y|yeah|yep)\b|using mating disruption|under mating disruption|disrupted orchard/.test(normalized))knownContext.mating_disruption=true;
-    if(/^(no|n|nope)\b|not using mating disruption|without mating disruption|not disrupted/.test(normalized))knownContext.mating_disruption=false;
-  }
-  if(pendingMissing.includes('location')&&normalized.trim())knownContext.location=value.trim();
-  if(pendingMissing.includes('monitoring_goal')){
-    if(/suppression|suppressing|near zero|check.*disruption|verify.*disruption|is.*working/.test(normalized))knownContext.monitoring_goal='suppression';
-    if(/activity|flight|detect|catch.*despite|monitor.*despite|moths.*present/.test(normalized))knownContext.monitoring_goal='activity';
-  }
-  if(pendingMissing.includes('trap_component')){
-    const wantsBody=/trap body|trap itself|delta trap|body|shell/.test(normalized);
-    const wantsLiner=/sticky liner|liner|sticky card|glue/.test(normalized);
-    const wantsLure=/lure|bait/.test(normalized);
-    if(wantsBody&&wantsLiner&&!wantsLure)knownContext.trap_component='body_and_liner';
-    else if(wantsBody&&!wantsLiner&&!wantsLure)knownContext.trap_component='body';
-    else if(wantsLiner&&!wantsBody&&!wantsLure)knownContext.trap_component='liner';
-    else if(wantsLure&&!wantsBody&&!wantsLiner)knownContext.trap_component='lure';
-  }
-  const acres=normalized.match(/(\d+(?:\.\d+)?)\s*(?:acre|acres|ac)\b/);if(acres)knownContext.acreage=Number(acres[1]);
-  const blocks=normalized.match(/(\d+)\s*(?:block|blocks)\b/);if(blocks)knownContext.number_of_blocks=Number(blocks[1]);
+const API_URL='https://tfpm-api.brentshortusda.workers.dev/ask',input=document.getElementById('input'),conversation=document.getElementById('conversation'),continueBtn=document.getElementById('continueBtn');
+let knownContext={},conversationHistory=[];
+function esc(v){return String(v).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
+function paragraphs(t){return String(t||'').split(/\n{2,}/).filter(Boolean).map(p=>`<p>${esc(p)}</p>`).join('')}
+function addMessage(role,html){const a=document.createElement('article');a.className='message '+role;a.innerHTML=`<div class="label">${role==='user'?'You':'TFPM'}</div><div class="body">${html}</div>`;conversation.appendChild(a);a.scrollIntoView({behavior:'smooth',block:'nearest'});return a}
+function questionBox(next=false){return `<form class="refine ${next?'next-question':''}"><label>${next?'Do you have another question?':'Add the needed detail'}</label><div class="row"><input autocomplete="off" placeholder="${next?'Enter your next question...':'Enter your answer...'}"><button class="primary" type="submit">${next?'Ask TFPM':'Continue'}</button></div></form>`}
+function wire(a){const f=a.querySelector('.refine');if(f)f.onsubmit=e=>{e.preventDefault();const v=f.querySelector('input').value.trim();if(v)handleEntry(v)}}
+function diagnostics(d){const r=(d.retrieved_record_ids||[]).join(', ')||'None';return `<details class="diagnostics"><summary>Developer details</summary><dl><dt>Status</dt><dd>${esc(d.status||'unknown')}</dd><dt>Target</dt><dd>${esc(d.detected?.target||knownContext.target||'Not detected')}</dd><dt>Domain</dt><dd>${esc(d.detected?.domain||knownContext.domain||'Not detected')}</dd><dt>Records</dt><dd>${esc(r)}</dd><dt>Confidence</dt><dd>${esc(d.confidence||'Not reported')}</dd></dl></details>`}
+async function askWorker(question){
+ continueBtn.disabled=true;continueBtn.textContent='Thinking…';
+ try{
+  const response=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify({question,context:knownContext,history:conversationHistory.slice(0,-1).slice(-12)})});
+  const raw=await response.text();let data;
+  try{data=JSON.parse(raw)}catch{throw new Error(`Knowledge service returned an unreadable response (${response.status}).`)}
+  if(!response.ok)throw new Error([data.error,data.detail].filter(Boolean).join(': ')||`Request failed (${response.status})`);
+  if(data.detected?.target)knownContext.target=data.detected.target;if(data.detected?.domain)knownContext.domain=data.detected.domain;
+  if(data.status==='needs_clarification'){const q=data.clarification||'Please provide more detail.';conversationHistory.push({role:'assistant',content:q});const a=addMessage('assistant',`<p><strong>${esc(q)}</strong></p>${questionBox(false)}${diagnostics(data)}`);wire(a);return}
+  const answer=data.answer||'TFPM does not yet have enough verified information to answer that confidently.';conversationHistory.push({role:'assistant',content:answer});const a=addMessage('assistant',`<div class="answer">${paragraphs(answer)}</div>${diagnostics(data)}${questionBox(true)}`);wire(a)
+ }catch(error){addMessage('assistant',`<p>TFPM could not complete that question.</p><p class="status">${esc(error.message)}</p>`)}
+ finally{continueBtn.disabled=false;continueBtn.textContent='Continue'}
 }
-async function askWorker(question){continueBtn.disabled=true;continueBtn.textContent='Thinking…';
-  try{
-    const response=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify({question,context:knownContext})});
-    const raw=await response.text();
-    let data;
-    try{data=JSON.parse(raw)}catch{throw new Error(`Knowledge service returned an unreadable response (${response.status}).`)}
-    if(!response.ok)throw new Error(data.error||`Request failed (${response.status})`);
-    if(data.detected?.target)knownContext.target=data.detected.target;
-    if(data.detected?.domain)knownContext.domain=data.detected.domain;
-    if(data.status==='needs_clarification'){
-      pendingQuestion=question;
-      pendingMissing=data.missing_context||[];
-      if(!knownContext.target&&/which pest or disease/i.test(data.clarification||''))pendingMissing=['target',...pendingMissing];
-      const article=addMessage('assistant',`<p><strong>${esc(data.clarification||'Please provide more detail.')}</strong></p>${followupBox('Add the needed detail','Enter your answer...')}${diagnostics(data)}`);wireFollowup(article);return;
-    }
-    pendingQuestion='';pendingMissing=[];
-    if(knownContext.trap_component)delete knownContext.trap_component;
-    const answer=data.answer||'I do not yet have enough verified information to answer that confidently.';
-    const article=addMessage('assistant',`<div class="answer">${paragraphs(answer)}</div>${diagnostics(data)}${nextQuestionBox()}`);wireNextQuestion(article);
-  }catch(error){
-    addMessage('assistant',`<p>I could not reach the TFPM knowledge service. Please try again.</p><p class="status">${esc(error.message)}</p>`);
-  }finally{continueBtn.disabled=false;continueBtn.textContent='Continue'}
-}
-async function handleEntry(value,isFollowup=false){document.querySelectorAll('.next-question').forEach(form=>form.remove());addMessage('user',`<p>${esc(value)}</p>`);input.value='';
-  if(isFollowup&&pendingQuestion){parseContextReply(value);const unanswered=pendingMissing.filter(item=>item==='target'?!knownContext.target:item==='mating_disruption'?typeof knownContext.mating_disruption!=='boolean':item==='location'?!knownContext.location:item==='monitoring_goal'?!knownContext.monitoring_goal:item==='trap_component'?!knownContext.trap_component:item==='acreage'?!Number.isFinite(knownContext.acreage):item==='number_of_blocks'?!Number.isFinite(knownContext.number_of_blocks):false);pendingMissing=unanswered;if(!unanswered.length){await askWorker(pendingQuestion);return}}
-  await askWorker(value);
-}
-function reset(){conversation.innerHTML='';knownContext={};pendingQuestion='';pendingMissing=[];input.value='';input.focus()}
-document.getElementById('search').onsubmit=e=>{e.preventDefault();const value=input.value.trim();if(value)handleEntry(value)};
-document.getElementById('home').onclick=reset;
-reset();
+async function handleEntry(value){document.querySelectorAll('.refine').forEach(f=>f.remove());addMessage('user',`<p>${esc(value)}</p>`);conversationHistory.push({role:'user',content:value});input.value='';await askWorker(value)}
+function reset(){conversation.innerHTML='';knownContext={};conversationHistory=[];input.value='';input.focus()}
+document.getElementById('search').onsubmit=e=>{e.preventDefault();const v=input.value.trim();if(v)handleEntry(v)};document.getElementById('home').onclick=reset;reset();
 </script></body></html>
