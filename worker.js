@@ -51,11 +51,22 @@ function detectMatingDisruption(question, context) {
   return null;
 }
 
-function trapAndLureAnswer(usingMatingDisruption, location) {
-  if (usingMatingDisruption) {
-    return `Use a delta-style trap with a replaceable sticky liner. Because the orchard uses mating disruption, lure choice must follow regional guidance; CM-DA is not automatically the best choice in every part of the country. TFPM does not yet have verified lure-selection guidance for ${location}, so it cannot responsibly choose the lure yet.`;
+function detectMonitoringGoal(question, context) {
+  if (context?.monitoring_goal === "suppression" || context?.monitoring_goal === "activity") return context.monitoring_goal;
+  const normalizedQuestion = normalize(question);
+  if (/check.*disruption|verify.*disruption|suppression|stay near zero|near zero|is disruption working/.test(normalizedQuestion)) return "suppression";
+  if (/monitor.*activity|flight activity|detect activity|catch.*despite|monitor.*despite|track.*flight/.test(normalizedQuestion)) return "activity";
+  return null;
+}
+
+function trapAndLureAnswer(usingMatingDisruption, monitoringGoal) {
+  if (usingMatingDisruption && monitoringGoal === "suppression") {
+    return "Use a delta-style trap with a replaceable sticky liner and a CM 1X lure when the objective is to evaluate whether mating disruption is suppressing catches from a standard pheromone lure. Under mating disruption, the CM 1X catch would be expected to remain near zero. Interpret the catch specifically as a measure of response to the standard pheromone lure, not as proof that codling moth is absent.";
   }
-  return "Use a delta-style trap with a replaceable sticky liner. Two common lure choices are CM 1X, which has a four-week field life, and CM L2, which has an eight-week field life. Choose between them based on the desired service interval, and record the installation and replacement dates.";
+  if (usingMatingDisruption && monitoringGoal === "activity") {
+    return "Use a delta-style trap with a replaceable sticky liner. Options for monitoring activity despite mating disruption include CM 10X, which is a higher-load pheromone lure, is not expected to remain near zero, and lasts about two weeks; CM-DA, which combines pheromone and kairomone and may be used with or without acetic acid, with an approximate field life of 8–12 weeks; and CM 4K, which contains kairomones but no pheromone and also has an approximate field life of 8–12 weeks. Kairomone-based lure performance can vary by location and even within a season, so TFPM should not name one of these as universally best without locally relevant evidence.";
+  }
+  return "Use a delta-style trap with a replaceable sticky liner. In an orchard without mating disruption, two common lure choices are CM 1X, which has a four-week field life, and CM L2, which has an eight-week field life. Choose between them based on the desired service interval, and record the installation and replacement dates.";
 }
 
 function scoreRecord(record, tokens, normalizedQuestion) {
@@ -147,21 +158,22 @@ async function answerQuestion(question, context, env) {
         retrieved_record_ids: ["cm.monitoring.trap-type", "cm.monitoring.mating-disruption"]
       });
     }
-    if (usingMatingDisruption && !String(context?.location || "").trim()) {
+    const monitoringGoal = usingMatingDisruption ? detectMonitoringGoal(question, context) : null;
+    if (usingMatingDisruption && !monitoringGoal) {
       return jsonResponse({
         status: "needs_clarification",
-        clarification: "What state or region is the orchard in?",
-        missing_context: ["location"],
+        clarification: "What do you want the trap to tell you: whether mating disruption is suppressing standard pheromone catches, or whether codling moth activity is occurring despite disruption?",
+        missing_context: ["monitoring_goal"],
         detected: { target, domain: "monitoring" },
         retrieved_record_ids: ["cm.monitoring.trap-type", "cm.monitoring.mating-disruption"]
       });
     }
     return jsonResponse({
       status: "answered",
-      answer: trapAndLureAnswer(usingMatingDisruption, String(context?.location || "").trim()),
+      answer: trapAndLureAnswer(usingMatingDisruption, monitoringGoal),
       detected: { target, domain: "monitoring" },
       retrieved_record_ids: ["cm.monitoring.trap-type", "cm.monitoring.mating-disruption", "cm.monitoring.lure-maintenance"],
-      confidence: usingMatingDisruption ? "limited-regional-knowledge" : "high"
+      confidence: usingMatingDisruption && monitoringGoal === "activity" ? "variable-by-location-and-season" : "high"
     });
   }
 
