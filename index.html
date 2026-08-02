@@ -50,6 +50,8 @@ async function askWorker(question){continueBtn.disabled=true;continueBtn.textCon
     let data;
     try{data=JSON.parse(raw)}catch{throw new Error(`Knowledge service returned an unreadable response (${response.status}).`)}
     if(!response.ok)throw new Error(data.error||`Request failed (${response.status})`);
+    if(data.detected?.target)knownContext.target=data.detected.target;
+    if(data.detected?.domain)knownContext.domain=data.detected.domain;
     if(data.status==='needs_clarification'){
       pendingQuestion=question;
       pendingMissing=data.missing_context||[];
