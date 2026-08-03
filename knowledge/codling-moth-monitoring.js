@@ -117,16 +117,15 @@ const codlingMothMonitoring = {
         "number of traps"
       ],
       "facts": [
-        "A commonly used commercial-orchard monitoring guideline is one codling moth trap for every five acres, with a minimum of two traps in each orchard block.",
-        "For any orchard block of five acres or less, the two-trap minimum means that the guideline works out to two traps for that block.",
-        "Trap count is calculated separately for each orchard block rather than from the farm's total acreage.",
-        "Some monitoring programs use different trap densities when catches are being tied to treatment decisions, so the monitoring objective can change how trap numbers are interpreted.",
-        "Block layout and the purpose of monitoring affect how useful the resulting trap catches will be."
+        "Codling moth trap count is calculated separately for each orchard block.",
+        "Each block starts with a minimum of two traps.",
+        "For an individual block larger than ten acres, the trap count increases using one trap for every five acres, rounding up to a whole trap.",
+        "The calculation for each block is the greater of two traps or the block acreage divided by five and rounded up.",
+        "When the calculation for a block results in two traps, explain the two-trap count directly without mentioning the one-trap-per-five-acre calculation.",
+        "When a farm contains more than one block, the acreage of each individual block is needed; total farm acreage and the number of blocks alone are not enough to calculate the count."
       ],
       "required_context": [
-        "acreage",
-        "number_of_blocks",
-        "monitoring_objective"
+        "acreage_of_each_block"
       ],
       "confidence": "high-with-regional-variation",
       "source_ids": [
