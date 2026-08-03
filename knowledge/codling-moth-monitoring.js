@@ -119,9 +119,12 @@ const codlingMothMonitoring = {
       "facts": [
         "Codling moth trap counts are considered separately for each orchard block.",
         "The general minimum is two traps in each orchard block.",
-        "For an individual orchard block of 15 acres or more, use the acreage-based guideline of one trap for every five acres, rounding up to a whole trap.",
-        "Blocks smaller than 15 acres remain at the two-trap minimum, so their individual acreages are not needed to explain the general trap-count rule.",
-        "The rule can be explained without collecting the acreage of every block: each block has a minimum of two traps, while any individual block of 15 acres or more uses one trap for every five acres.",
+        "For an individual block of ten acres or less, the guideline works out to two traps.",
+        "For blocks larger than ten acres, one trap per five acres is the reference rate.",
+        "When a block acreage falls between five-acre increments, express the count as a range between the whole-trap values below and above that acreage instead of forcing one value.",
+        "For example, a block larger than ten but smaller than fifteen acres has a range of two to three traps, while a block larger than fifteen but smaller than twenty acres has a range of three to four traps.",
+        "When acreage is an exact multiple of five, use the exact whole-trap count; for example, a fifteen-acre block corresponds to three traps.",
+        "The rule can be explained without collecting the acreage of every block, and a general question about trap numbers should receive the rule rather than a clarification questionnaire.",
         "Questions about where traps are placed can be answered without knowing block acreage or calculating the number of traps."
       ],
       
