@@ -214,6 +214,26 @@
       ]
     },
     {
+      "id": "cm.monitoring.biofix",
+      "topics": [
+        "biofix",
+        "codling moth biofix",
+        "when is biofix",
+        "first sustained capture",
+        "degree-day start"
+      ],
+      "facts": [
+        "Codling moth biofix is established from the first sustained capture of adult codling moths, not automatically from the first single moth caught.",
+        "An isolated early capture may occur before sustained flight and should not by itself be treated as biofix.",
+        "Biofix marks the starting point used for the codling moth degree-day model.",
+        "Do not invent a fixed number of consecutive catches or a universal catch sequence to define sustained capture when no such criterion has been supplied."
+      ],
+      "confidence": "expert-reviewed",
+      "source_ids": [
+        "user-field-review"
+      ]
+    },
+    {
       "id": "cm.monitoring.damage-sampling",
       "topics": [
         "fruit sampling",
