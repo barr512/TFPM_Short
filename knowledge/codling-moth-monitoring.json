@@ -225,6 +225,11 @@
       "facts": [
         "Codling moth biofix is established from the first sustained capture of adult codling moths, not automatically from the first single moth caught.",
         "An isolated early capture may occur before sustained flight and should not by itself be treated as biofix.",
+        "Without mating disruption, sustained captures in an appropriate pheromone-baited monitoring trap can be used to establish biofix.",
+        "Once mating disruption is operating, catches in a standard sex-pheromone trap may remain near zero even when codling moth is present, making a trap-catch biofix difficult or unreliable.",
+        "The same biofix instructions must not be presented for disrupted and non-disrupted orchards without explaining this difference.",
+        "A delta trap describes the trap body; the lure in the trap determines what attractive signal is being used.",
+        "Alternative lure types used under mating disruption do not have a universally supplied biofix criterion in TFPM's current knowledge, so TFPM must not invent one.",
         "Biofix marks the starting point used for the codling moth degree-day model.",
         "Do not invent a fixed number of consecutive catches or a universal catch sequence to define sustained capture when no such criterion has been supplied."
       ],
