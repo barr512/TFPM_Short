@@ -117,16 +117,14 @@
         "number of traps"
       ],
       "facts": [
-        "Codling moth trap count is calculated separately for each orchard block.",
-        "Each block starts with a minimum of two traps.",
-        "For an individual block larger than ten acres, the trap count increases using one trap for every five acres, rounding up to a whole trap.",
-        "The calculation for each block is the greater of two traps or the block acreage divided by five and rounded up.",
-        "When the calculation for a block results in two traps, explain the two-trap count directly without mentioning the one-trap-per-five-acre calculation.",
-        "When a farm contains more than one block, the acreage of each individual block is needed; total farm acreage and the number of blocks alone are not enough to calculate the count."
+        "Codling moth trap counts are considered separately for each orchard block.",
+        "The general minimum is two traps in each orchard block.",
+        "For an individual orchard block of 15 acres or more, use the acreage-based guideline of one trap for every five acres, rounding up to a whole trap.",
+        "Blocks smaller than 15 acres remain at the two-trap minimum, so their individual acreages are not needed to explain the general trap-count rule.",
+        "For a farm with many blocks, first determine the number of blocks and whether any individual block is 15 acres or larger. Only the acreages of those larger blocks are needed for an exact total.",
+        "Questions about where traps are placed can be answered without knowing block acreage or calculating the number of traps."
       ],
-      "required_context": [
-        "acreage_of_each_block"
-      ],
+      
       "confidence": "high-with-regional-variation",
       "source_ids": [
         "vt-cm",
