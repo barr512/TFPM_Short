@@ -1,4 +1,5 @@
 import codlingMothMonitoring from "./knowledge/codling-moth-monitoring.js";
+import sourceGuides from "./knowledge/source-guides.js";
 
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
@@ -68,7 +69,11 @@ function retrieveRecords(question, history, context, limit = 10) {
   ].join(" ");
   const normalizedConversation = normalize(conversationText);
   const tokens = tokenize(conversationText);
-  const scored = codlingMothMonitoring.records
+  const knowledgeRecords = [
+    ...codlingMothMonitoring.records,
+    ...sourceGuides.records,
+  ];
+  const scored = knowledgeRecords
     .map((record) => ({ record, score: scoreRecord(record, tokens, normalizedConversation) }))
     .sort((a, b) => b.score - a.score);
 
@@ -241,6 +246,7 @@ export default {
         return jsonResponse({
           ok: true,
           knowledge_version: codlingMothMonitoring.schema_version,
+          source_catalog_version: sourceGuides.schema_version,
           reasoning: "full-question-grounded-generation",
         });
       }
