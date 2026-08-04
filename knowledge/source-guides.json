@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Authoritative inventory of full production guides supplied by the TFPM owner.",
+  "retrieval_policy": {
+    "normal_answers_hide_source_names": true,
+    "show_sources_only_when_requested": true,
+    "retain_region_crop_edition_context": true,
+    "pesticide_information_never_supersedes_label": true,
+    "do_not_treat_cataloged_as_content_indexed": true
+  },
+  "records": [
+    {
+      "id": "source.catalog.owner-guides",
+      "topics": ["available guides", "production guides", "fruit guides", "sources", "regional coverage", "what information do you have"],
+      "facts": [
+        "TFPM's owner-supplied guide collection currently includes six verified commercial tree-fruit guides covering the Mid-Atlantic, Southeast, New Jersey, Michigan, Washington, and the Pacific Northwest.",
+        "A guide being present in the catalog does not mean every page has already been converted into searchable facts.",
+        "The Michigan guide has partial topic-level indexing. The other five guides are cataloged and awaiting topic-by-topic extraction.",
+        "Source names are provided when the user asks for them; ordinary grower answers present the information without citations."
+      ],
+      "confidence": "source-inventory",
+      "source_ids": [
+        "mid-atlantic-spray-bulletin-2026",
+        "southeast-peach-guide-2026",
+        "southeast-apple-guide-2026",
+        "rutgers-tree-fruit-guide-2025-2026",
+        "wsu-integrated-fruit-production-guide",
+        "msu-fruit-guide-2026"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "mid-atlantic-spray-bulletin-2026",
+      "supplied_by": "TFPM owner",
+      "title": "2026 Spray Bulletin for Commercial Tree Fruit Growers",
+      "publication": "456-419 / ENTO-638",
+      "edition": "2026",
+      "region": ["Mid-Atlantic", "Virginia", "West Virginia", "Maryland", "North Carolina", "District of Columbia"],
+      "crop_scope": ["commercial tree fruit"],
+      "format": "PDF",
+      "pages": 187,
+      "url": "https://www.pubs.ext.vt.edu/content/dam/pubs_ext_vt_edu/456/456-419/ENTO-638.pdf",
+      "content_index_status": "cataloged_not_yet_extracted",
+      "notes": "Multi-institution regional bulletin. Preserve state, edition, crop, and label context."
+    },
+    {
+      "id": "southeast-peach-guide-2026",
+      "supplied_by": "TFPM owner",
+      "organization": "University of Georgia Cooperative Extension and regional contributors",
+      "title": "2026 Southeastern Peach, Nectarine, and Plum Pest Management and Culture Guide",
+      "publication": "UGA Cooperative Extension Bulletin 1171",
+      "edition": "2026",
+      "region": ["Southeast"],
+      "crop_scope": ["peach", "nectarine", "plum"],
+      "format": "PDF",
+      "pages": 81,
+      "url": "https://fieldreport.caes.uga.edu/wp-content/uploads/2025/03/B1171-2026.pdf",
+      "content_index_status": "cataloged_not_yet_extracted",
+      "notes": "Multi-state guide with disease, insect, weed, vertebrate, cultural, safety, and pesticide information. Preserve regional, edition, crop, and label context."
+    },
+    {
+      "id": "southeast-apple-guide-2026",
+      "supplied_by": "TFPM owner",
+      "organization": "NC State Extension",
+      "title": "2026 Integrated Orchard Management Guide for Commercial Apples in the Southeast",
+      "edition": "2026",
+      "publication_date": "2026-02-13",
+      "region": ["Southeast"],
+      "crop_scope": ["commercial apple"],
+      "format": "online publication with embedded PDF",
+      "url": "https://content.ces.ncsu.edu/integrated-orchard-management-guide-for-commercial-apples-in-the-southeast",
+      "content_index_status": "cataloged_not_yet_extracted",
+      "notes": "Integrated orchard-management guide. Preserve regional, edition, crop, and label context."
+    },
+    {
+      "id": "rutgers-tree-fruit-guide-2025-2026",
+      "supplied_by": "TFPM owner",
+      "organization": "Rutgers New Jersey Agricultural Experiment Station",
+      "title": "2025/2026 New Jersey Commercial Tree Fruit Production Guide",
+      "publication": "E002",
+      "edition": "2025/2026",
+      "region": ["Mid-Atlantic", "New Jersey"],
+      "crop_scope": ["apple", "peach", "nectarine", "pear", "cherry", "plum", "commercial tree fruit"],
+      "format": "PDF",
+      "pages": 308,
+      "uploaded_file_name": "54c2452b-3875-4345-ab29-f159c9c6c3ac.pdf",
+      "content_index_status": "cataloged_not_yet_extracted",
+      "notes": "Includes production, horticulture, pest, disease, weed, nutrition, frost, safety, and application information. Preserve New Jersey, edition, crop, and label context."
+    },
+    {
+      "id": "wsu-integrated-fruit-production-guide",
+      "supplied_by": "TFPM owner",
+      "organization": "Washington State University",
+      "title": "Integrated Fruit Production Guide",
+      "region": ["Washington", "Pacific Northwest"],
+      "crop_scope": ["apple", "pear", "cherry", "stone fruit"],
+      "format": "live online guide",
+      "url": "https://cpg.treefruit.wsu.edu/",
+      "accessed": "2026-08-04",
+      "content_index_status": "cataloged_not_yet_extracted",
+      "notes": "Live section-based guide rather than a single annual PDF. Retain page access/update date and Washington-specific pesticide context."
+    },
+    {
+      "id": "msu-fruit-guide-2026",
+      "supplied_by": "TFPM owner",
+      "organization": "Michigan State University Extension",
+      "title": "Michigan Fruit Management Guide 2026",
+      "publication": "Extension Bulletin E-154",
+      "edition": "2026",
+      "information_current_as_of": "2025-11-01",
+      "region": ["Michigan", "Great Lakes", "Midwest"],
+      "crop_scope": ["apple", "pear", "peach", "plum", "cherry", "grape", "strawberry", "caneberry", "blueberry"],
+      "format": "PDF",
+      "pages": 335,
+      "uploaded_file_name": "16e6c8f7-5c16-4b11-b847-c9729141f72d.pdf",
+      "content_index_status": "partially_indexed",
+      "indexed_topics": ["general monitoring", "mating disruption", "codling moth monitoring", "codling moth biofix"],
+      "notes": "Revised annually. Pesticide information never supersedes the product label."
+    }
+  ]
+}
