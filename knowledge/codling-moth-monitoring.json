@@ -35,11 +35,23 @@
       "topics": [
         "trap type",
         "which trap",
+        "kinds of traps",
+        "trap body",
         "delta trap",
+        "wing trap",
+        "wing-style trap",
+        "camera trap",
         "sticky trap"
       ],
       "facts": [
-        "Delta-style traps with a replaceable sticky liner are commonly used for codling moth monitoring.",
+        "Current codling moth monitoring trap bodies include large plastic delta traps and wing-style sticky traps.",
+        "Delta traps are the most common current style, but they are not the only trap body used for codling moth monitoring.",
+        "Large plastic delta traps are durable and reusable, and their replaceable sticky liners slide in and out of the trap body.",
+        "Wing-style traps are another established pheromone-trap body; they are generally less durable and commonly last less than one season.",
+        "Field comparisons indicate that codling moth catch in wing and delta traps is similar.",
+        "Camera traps are an emerging monitoring option, but their different opening and automated system mean that catch interpretation should not automatically be assumed identical to traditional wing or delta traps.",
+        "Older codling moth monitoring methods have included molasses-and-vinegar bait traps and black-light traps, although wing and delta pheromone traps are the established sticky-trap styles discussed for current orchard monitoring.",
+        "The trap body and lure are separate choices: the trap holds or captures the insect, while the lure supplies the attractive signal.",
         "In orchards without mating disruption, two common lure choices are CM 1X and CM L2.",
         "CM 1X has a four-week field life.",
         "CM L2 has an eight-week field life."
@@ -48,7 +60,9 @@
       "source_ids": [
         "cornell-ipm-2025",
         "vt-cm",
-        "ncsu-cm"
+        "ncsu-cm",
+        "wsu-cm",
+        "usu-intermountain-guide"
       ]
     },
     {
@@ -127,7 +141,6 @@
         "The rule can be explained without collecting the acreage of every block, and a general question about trap numbers should receive the rule rather than a clarification questionnaire.",
         "Questions about where traps are placed can be answered without knowing block acreage or calculating the number of traps."
       ],
-      
       "confidence": "high-with-regional-variation",
       "source_ids": [
         "vt-cm",
@@ -298,6 +311,13 @@
       "organization": "TFPM expert review",
       "title": "Field interpretation supplied during TFPM development",
       "review_status": "expert-reviewed"
+    },
+    {
+      "id": "usu-intermountain-guide",
+      "organization": "Utah State University Extension",
+      "title": "Intermountain Tree Fruit Production Guide",
+      "url": "https://extension.usu.edu/smallfarms/files/tf-guide.pdf",
+      "notes": "Describes large plastic delta and wing-style pheromone trap bodies."
     }
   ]
 }
