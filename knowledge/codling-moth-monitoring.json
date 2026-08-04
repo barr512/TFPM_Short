@@ -41,11 +41,13 @@
         "wing trap",
         "wing-style trap",
         "camera trap",
-        "sticky trap"
+        "sticky trap",
+        "bucket trap"
       ],
       "facts": [
         "Current codling moth monitoring trap bodies include large plastic delta traps and wing-style sticky traps.",
         "Delta traps are the most common current style, but they are not the only trap body used for codling moth monitoring.",
+        "Some growers also use bucket-style traps for codling moth monitoring.",
         "Large plastic delta traps are durable and reusable, and their replaceable sticky liners slide in and out of the trap body.",
         "Wing-style traps are another established pheromone-trap body; they are generally less durable and commonly last less than one season.",
         "Field comparisons indicate that codling moth catch in wing and delta traps is similar.",
