@@ -42,7 +42,9 @@ const codlingMothMonitoring = {
         "wing-style trap",
         "camera trap",
         "sticky trap",
-        "bucket trap"
+        "bucket trap",
+        "triangle trap",
+        "diamond trap"
       ],
       "facts": [
         "Current codling moth monitoring trap bodies include large plastic delta traps and wing-style sticky traps.",
@@ -56,7 +58,9 @@ const codlingMothMonitoring = {
         "The trap body and lure are separate choices: the trap holds or captures the insect, while the lure supplies the attractive signal.",
         "In orchards without mating disruption, two common lure choices are CM 1X and CM L2.",
         "CM 1X has a four-week field life.",
-        "CM L2 has an eight-week field life."
+        "CM L2 has an eight-week field life.",
+        "The 2026 Michigan guide identifies larger Triangle, Wing, and some Diamond trap versions as effective trap bodies for capturing codling moth males.",
+        "Trap names such as Triangle, Wing, Diamond, delta, and bucket describe trap bodies or designs; they must not be confused with lure names such as CM 1X, CM L2, CM 10X, CM-DA, or CM 4K."
       ],
       "confidence": "high",
       "source_ids": [
@@ -64,7 +68,8 @@ const codlingMothMonitoring = {
         "vt-cm",
         "ncsu-cm",
         "wsu-cm",
-        "usu-intermountain-guide"
+        "usu-intermountain-guide",
+        "msu-fruit-guide-2026"
       ]
     },
     {
@@ -246,11 +251,15 @@ const codlingMothMonitoring = {
         "A delta trap describes the trap body; the lure in the trap determines what attractive signal is being used.",
         "Alternative lure types used under mating disruption do not have a universally supplied biofix criterion in TFPM's current knowledge, so TFPM must not invent one.",
         "Biofix marks the starting point used for the codling moth degree-day model.",
-        "Do not invent a fixed number of consecutive catches or a universal catch sequence to define sustained capture when no such criterion has been supplied."
+        "Do not invent a fixed number of consecutive catches or a universal catch sequence to define sustained capture when no such criterion has been supplied.",
+        "The 2026 Michigan guide defines the start of sustained codling moth capture as the date of the first moth catch when moths are then captured on two successive trapping dates.",
+        "That two-successive-trapping-date criterion is Michigan-specific guidance and must not be presented as a universal biofix definition for every region or monitoring program.",
+        "In the Michigan guide, traps are checked twice weekly while establishing biofix and weekly afterward."
       ],
       "confidence": "expert-reviewed",
       "source_ids": [
-        "user-field-review"
+        "user-field-review",
+        "msu-fruit-guide-2026"
       ]
     },
     {
@@ -270,6 +279,98 @@ const codlingMothMonitoring = {
       "source_ids": [
         "vt-cm",
         "ncsu-cm"
+      ]
+    },
+    {
+      "id": "fruit.monitoring.general-framework",
+      "topics": [
+        "monitoring insects",
+        "biological monitoring",
+        "passive trap",
+        "active trap",
+        "visual cue",
+        "olfactory cue",
+        "trap lure difference"
+      ],
+      "facts": [
+        "Biological monitoring tracks changes in pests, beneficial organisms, crop condition, and damage through repeated orchard observations.",
+        "Individual orchards or fields are monitored separately because pest conditions can differ among sites.",
+        "Passive traps intercept arthropods without an attractant; clear sticky panels and malaise traps are examples.",
+        "Active traps use visual cues, olfactory cues, or both to attract insects.",
+        "Olfactory attractants placed in traps are called lures or baits and can come from plants, microbes, or insects.",
+        "Sex pheromones are insect-produced signals used to attract mates; aggregation pheromones stimulate insects to gather.",
+        "Trap placement depends on pest behavior, including whether activity occurs near borders, known hot spots, high in the canopy, or near the ground."
+      ],
+      "confidence": "source-reviewed",
+      "source_ids": [
+        "msu-fruit-guide-2026"
+      ]
+    },
+    {
+      "id": "tree-fruit.mating-disruption.monitoring-michigan-2026",
+      "topics": [
+        "mating disruption monitoring",
+        "monitor mating disruption",
+        "Michigan mating disruption",
+        "traps under mating disruption",
+        "border trap"
+      ],
+      "facts": [
+        "The 2026 Michigan guide describes pheromone-baited sticky traps under mating disruption as proxy females used to indicate whether males can locate a pheromone source.",
+        "Under this Michigan program, no males in the traps is one indication that disruption is working, but monitoring reliability increases as more traps are used.",
+        "For general mating-disruption efficacy monitoring in Michigan tree fruit, the guide gives three traps in blocks smaller than ten acres and five traps in larger blocks.",
+        "That three-or-five-trap density is tied to evaluating mating-disruption performance and should not be blended with a general codling moth detection density.",
+        "The guide includes at least one trap near a border because pheromone coverage can be less uniform there and border catches can differ from interior catches.",
+        "This is Michigan-specific program guidance and should not be presented as a universal trap-density rule."
+      ],
+      "confidence": "source-reviewed-regional",
+      "source_ids": [
+        "msu-fruit-guide-2026"
+      ]
+    },
+    {
+      "id": "cm.monitoring.michigan-disrupted-orchards-2026",
+      "topics": [
+        "Michigan codling moth monitoring",
+        "CM under mating disruption",
+        "high-load lure",
+        "pear ester lure",
+        "disrupted orchard trap density",
+        "Michigan CM threshold"
+      ],
+      "facts": [
+        "For assessing codling moth control in a Michigan pheromone-treated orchard, the guide describes one trap per two to two-and-one-half acres as optimal and one trap per five to ten acres as acceptable in large, uniform blocks.",
+        "This density is specific to assessing codling moth control under mating disruption in the Michigan guide and must not replace the general trap-count information used for a different monitoring objective.",
+        "The guide places these traps in the upper third of the canopy and away from pheromone dispensers.",
+        "The guide warns that failure to catch males with a standard lure is not always a reliable indication of successful mating disruption.",
+        "High-load lures or lures combining codlemone and pear ester are described as options that are not completely suppressed in disrupted orchards.",
+        "The guide gives a cumulative catch of four or more moths in any one trap as a Michigan program trigger for considering supplemental control; this is regional guidance, not a universal threshold.",
+        "Do not total catches from multiple traps when interpreting a threshold that is defined for an individual trap."
+      ],
+      "confidence": "source-reviewed-regional",
+      "source_ids": [
+        "msu-fruit-guide-2026"
+      ]
+    },
+    {
+      "id": "source.msu-fruit-guide-2026",
+      "topics": [
+        "Michigan Fruit Management Guide",
+        "2026 Michigan guide",
+        "MSU fruit guide",
+        "Michigan pesticide guide",
+        "Michigan fruit management"
+      ],
+      "facts": [
+        "The Michigan Fruit Management Guide 2026 is intended for commercial fruit growers and states that its information is current as of November 1, 2025.",
+        "The guide is revised annually and directs users to destroy previous editions.",
+        "Its scope includes pesticide safety, monitoring insects, mating disruption, apples, pears, peaches, plums, cherries, grapes, strawberries, caneberries, blueberries, plant growth regulators, herbicides, storage disorders, nematodes, resistance management, rainfastness, and preharvest intervals.",
+        "The guide states that pesticide regulations change and that its information does not supersede the pesticide label.",
+        "Information drawn from this guide must retain Michigan and publication-year context, particularly for pesticide registrations, rates, thresholds, phenology, and regional management programs."
+      ],
+      "confidence": "source-metadata",
+      "source_ids": [
+        "msu-fruit-guide-2026"
       ]
     }
   ],
@@ -320,6 +421,17 @@ const codlingMothMonitoring = {
       "title": "Intermountain Tree Fruit Production Guide",
       "url": "https://extension.usu.edu/smallfarms/files/tf-guide.pdf",
       "notes": "Describes large plastic delta and wing-style pheromone trap bodies."
+    },
+    {
+      "id": "msu-fruit-guide-2026",
+      "organization": "Michigan State University Extension",
+      "title": "Michigan Fruit Management Guide 2026",
+      "publication": "Extension Bulletin E-154",
+      "information_current_as_of": "2025-11-01",
+      "edition": "2026",
+      "pages": 335,
+      "uploaded_file_name": "16e6c8f7-5c16-4b11-b847-c9729141f72d.pdf",
+      "notes": "Michigan-specific commercial fruit guide. Revised annually. Pesticide information never supersedes the product label."
     }
   ]
 };
