@@ -9,7 +9,7 @@ const codlingMothMonitoring = {
       "cm"
     ]
   },
-  "domain": "monitoring",
+ "domain": "codling-moth",
   "records": [
     {
       "id": "cm.monitoring.purpose",
@@ -30,6 +30,52 @@ const codlingMothMonitoring = {
         "ncsu-cm"
       ]
     },
+    {
+  "id": "cm.biology.lifecycle",
+  "topics": [
+    "codling moth biology",
+    "life cycle",
+    "generations",
+    "egg",
+    "larva",
+    "pupa",
+    "adult moth"
+  ],
+  "facts": [
+    "Codling moth develops through egg, larval, pupal, and adult stages.",
+    "The larval stage causes direct fruit injury by entering and feeding inside fruit.",
+    "Management timing is based on adult activity, egg development, larval hatch, and generation timing."
+  ],
+  "confidence": "high",
+  "source_ids": [
+    "cornell-ipm-2025",
+    "ncsu-cm",
+    "wsu-cm",
+    "vt-cm"
+  ]
+},
+    {
+  "id": "cm.damage.identification",
+  "topics": [
+    "codling moth damage",
+    "fruit damage",
+    "wormy apples",
+    "entry hole",
+    "frass",
+    "larval damage"
+  ],
+  "facts": [
+    "Codling moth larvae damage fruit by entering the fruit and feeding internally.",
+    "Fruit injury can be evaluated through visual inspection and monitoring programs.",
+    "Fruit sampling can supplement trap monitoring when evaluating codling moth pressure."
+  ],
+  "confidence": "high",
+  "source_ids": [
+    "cornell-ipm-2025",
+    "ncsu-cm",
+    "vt-cm"
+  ]
+},
     {
       "id": "cm.monitoring.trap-type",
       "topics": [
@@ -263,6 +309,28 @@ const codlingMothMonitoring = {
       ]
     },
     {
+  "id": "cm.degree-days.management",
+  "topics": [
+    "degree days",
+    "degree day model",
+    "heat units",
+    "spray timing",
+    "development model"
+  ],
+  "facts": [
+    "Codling moth development is commonly tracked using degree-day models.",
+    "Biofix is used as the starting point for degree-day accumulation.",
+    "Degree-day timing should follow the regional model being used for the orchard."
+  ],
+  "confidence": "high",
+  "source_ids": [
+    "newa-cm-2026",
+    "wsu-cm",
+    "vt-cm",
+    "ncsu-cm"
+  ]
+},
+    {
       "id": "cm.monitoring.damage-sampling",
       "topics": [
         "fruit sampling",
@@ -353,6 +421,71 @@ const codlingMothMonitoring = {
       ]
     },
     {
+  "id": "cm.threshold.context",
+  "topics": [
+    "threshold",
+    "action threshold",
+    "when should I spray",
+    "moths per trap",
+    "spray decision"
+  ],
+  "facts": [
+    "Codling moth thresholds vary among regions and monitoring programs.",
+    "Threshold interpretation depends on trap type, lure type, mating disruption status, and regional guidance.",
+    "TFPM should not provide a single universal threshold without the management context."
+  ],
+  "confidence": "high",
+  "source_ids": [
+    "vt-cm",
+    "penn-state-cm-2026",
+    "msu-fruit-guide-2026",
+    "wsu-cm",
+    "ncsu-cm"
+  ]
+},
+    {
+  "id": "cm.management.ipm",
+  "topics": [
+    "codling moth management",
+    "control options",
+    "IPM",
+    "spray program",
+    "management strategy"
+  ],
+  "facts": [
+    "Codling moth management combines monitoring, timing, and appropriate control measures.",
+    "Management decisions should consider monitoring results, orchard history, and the production system being used.",
+    "Product selection and application must follow applicable labels and regional recommendations."
+  ],
+  "confidence": "high",
+  "source_ids": [
+    "vt-cm",
+    "ncsu-cm",
+    "wsu-cm",
+    "cornell-ipm-2025"
+  ]
+},
+    {
+  "id": "cm.resistance.management",
+  "topics": [
+    "resistance",
+    "insecticide resistance",
+    "mode of action",
+    "product rotation"
+  ],
+  "facts": [
+    "Resistance management is part of long-term codling moth control programs.",
+    "Management programs should consider rotation of insecticide modes of action.",
+    "Resistance recommendations should follow regional guidance and product labels."
+  ],
+  "confidence": "high",
+  "source_ids": [
+    "wsu-cm",
+    "ncsu-cm",
+    "vt-cm"
+  ]
+},
+    {
       "id": "source.msu-fruit-guide-2026",
       "topics": [
         "Michigan Fruit Management Guide",
@@ -433,6 +566,17 @@ const codlingMothMonitoring = {
       "uploaded_file_name": "16e6c8f7-5c16-4b11-b847-c9729141f72d.pdf",
       "notes": "Michigan-specific commercial fruit guide. Revised annually. Pesticide information never supersedes the product label."
     }
+    {
+  "id": "penn-state-cm-2026",
+  "organization": "Penn State Extension",
+  "title": "Tree Fruit Insect Pest - Codling Moth",
+  "url": "https://extension.psu.edu/tree-fruit-insect-pest-codling-moth"
+},
+{
+  "id": "uga-apple-guide-2026",
+  "organization": "University of Georgia Extension",
+  "title": "2026 Integrated Orchard Management Guide for Commercial Apples in the Southeast"
+},
   ]
 };
 
