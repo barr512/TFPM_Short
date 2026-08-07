@@ -466,6 +466,54 @@ const codlingMothMonitoring = {
   ]
 },
     {
+  "id": "cm.management.pesticide-selection",
+  "topics": [
+    "pesticide selection",
+    "insecticide choice",
+    "what insecticide controls codling moth",
+    "codling moth spray",
+    "control products",
+    "chemical control"
+  ],
+  "facts": [
+    "Codling moth insecticide selection should be based on the pest stage being targeted, application timing, regional recommendations, and the product label.",
+    "Products differ in activity against codling moth eggs, larvae, and adults, and timing is critical for effective control.",
+    "A product recommendation should consider crop, location, resistance management considerations, and label requirements.",
+    "TFPM should use approved regional sources before providing product-specific guidance.",
+    "The product label is the final authority for registered uses, rates, restrictions, and application requirements."
+  ],
+  "confidence": "high",
+  "source_ids": [
+    "vt-cm",
+    "ncsu-cm",
+    "wsu-cm",
+    "msu-fruit-guide-2026",
+    "cornell-ipm-2025"
+  ]
+},
+    {
+  "id": "cm.management.mode-of-action",
+  "topics": [
+    "mode of action",
+    "IRAC",
+    "rotate insecticides",
+    "resistance management",
+    "insecticide rotation"
+  ],
+  "facts": [
+    "Codling moth management programs should consider rotation of insecticide modes of action to reduce resistance risk.",
+    "Repeated use of the same mode of action can increase selection pressure for resistance.",
+    "Regional guides should be consulted for current resistance concerns and recommended rotation strategies."
+  ],
+  "confidence": "high",
+  "source_ids": [
+    "msu-fruit-guide-2026",
+    "ncsu-cm",
+    "wsu-cm",
+    "vt-cm"
+  ]
+},
+    {
   "id": "cm.resistance.management",
   "topics": [
     "resistance",
