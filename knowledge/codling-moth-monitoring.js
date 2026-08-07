@@ -614,6 +614,7 @@ const codlingMothMonitoring = {
       "uploaded_file_name": "16e6c8f7-5c16-4b11-b847-c9729141f72d.pdf",
       "notes": "Michigan-specific commercial fruit guide. Revised annually. Pesticide information never supersedes the product label."
     }
+    ,
     {
   "id": "penn-state-cm-2026",
   "organization": "Penn State Extension",
