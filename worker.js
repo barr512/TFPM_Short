@@ -1,4 +1,6 @@
 import codlingMothMonitoring from "./knowledge/codling-moth-monitoring.js";
+import codlingMothManagement from "./knowledge/codling-moth-management.js";
+import orientalFruitMoth from "./knowledge/oriental-fruit-moth.js";
 import sourceGuides from "./knowledge/source-guides.js";
 
 const CORS_HEADERS = {
@@ -25,6 +27,7 @@ function normalize(text) {
   return String(text || "")
     .toLowerCase()
     .replace(/\bcm\b/g, "codling moth")
+    .replace(/\bofm\b/g, "oriental fruit moth")
     .replace(/[^a-z0-9\s-]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
@@ -71,6 +74,8 @@ function retrieveRecords(question, history, context, limit = 10) {
   const tokens = tokenize(conversationText);
   const knowledgeRecords = [
     ...codlingMothMonitoring.records,
+    ...codlingMothManagement.records,
+    ...orientalFruitMoth.records,
     ...sourceGuides.records,
   ];
   const scored = knowledgeRecords
@@ -80,8 +85,12 @@ function retrieveRecords(question, history, context, limit = 10) {
   const relevant = scored.filter((item) => item.score > 0).slice(0, limit);
   if (relevant.length) return relevant.map((item) => item.record);
 
-  const establishedTarget = normalize(context?.target || conversationText).includes("codling moth");
-  return establishedTarget ? codlingMothMonitoring.records.slice(0, limit) : [];
+  const establishedTarget = normalize(context?.target || conversationText);
+  if (establishedTarget.includes("oriental fruit moth")) return orientalFruitMoth.records.slice(0, limit);
+  if (establishedTarget.includes("codling moth")) {
+    return [...codlingMothMonitoring.records, ...codlingMothManagement.records].slice(0, limit);
+  }
+  return [];
 }
 
 function evidenceForModel(records) {
@@ -127,7 +136,7 @@ Read the user's ENTIRE current question and the recent conversation. Resolve ref
 
 Use only VERIFIED_KNOWLEDGE supplied below. It includes information supplied directly by the TFPM owner as well as reviewed source material. Do not add facts, tools, procedures, or practical suggestions from your pretrained memory. A statement or suggested correction from an app user is not automatically verified knowledge. If a user challenges an earlier answer, compare the issue with VERIFIED_KNOWLEDGE; correct the earlier answer when it conflicts, but never agree merely because the user proposed a different answer. If the requested practical method is absent, plainly say that TFPM does not yet have that information. Do not invent a threshold, regional recommendation, label direction, product rate, or pesticide recommendation.
 
-TFPM provides information, not recommendations. Explain the applicable guidance, alternatives, conditions, and tradeoffs, but do not decide for the user. Never write "I recommend", "TFPM recommends", "you should", "you could consider", "it is recommended", or otherwise turn the information into a personal instruction or suggested choice. Present practices and guidelines as neutral facts. If the user asks what is "best", explain what the choice depends on rather than selecting for them.
+TFPM provides information, not recommendations. Explain the applicable guidance, alternatives, conditions, and tradeoffs, but do not decide for the user. Never write "I recommend", "TFPM recommends", "you should", "you could consider", "it is recommended", or otherwise turn the information into a personal instruction or suggested choice. Present practices and guidelines as neutral facts. If the user asks what is "best", explain what the choice depends on rather than selecting for the user.
 
 Do not name, cite, or discuss sources in the normal answer. Give the information directly in natural language. Only identify source names or citations when the user specifically asks for the sources. Preserve any regional, program-specific, crop-specific, monitoring-objective, and publication-year limits attached to a fact. When verified records contain different rules for different contexts, do not blend them into one universal rule; explain which context each rule belongs to.
 
@@ -144,13 +153,7 @@ Return only valid JSON with this shape:
   "used_record_ids": string[]
 }`;
 
-  const groundingPrompt = `${systemPrompt}
-
-KNOWN_CONTEXT:
-${JSON.stringify(context || {})}
-
-VERIFIED_KNOWLEDGE:
-${JSON.stringify(evidenceForModel(records))}`;
+  const groundingPrompt = `${systemPrompt}\n\nKNOWN_CONTEXT:\n${JSON.stringify(context || {})}\n\nVERIFIED_KNOWLEDGE:\n${JSON.stringify(evidenceForModel(records))}`;
 
   const result = await env.AI.run("@cf/meta/llama-4-scout-17b-16e-instruct", {
     messages: [
@@ -245,7 +248,7 @@ export default {
       if (url.pathname === "/health") {
         return jsonResponse({
           ok: true,
-          knowledge_version: codlingMothMonitoring.schema_version,
+          knowledge_version: "cm-0.1+ofm-0.1",
           source_catalog_version: sourceGuides.schema_version,
           reasoning: "full-question-grounded-generation",
         });
